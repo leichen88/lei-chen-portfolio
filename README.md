@@ -1,6 +1,6 @@
 # Work Portfolio
 
-Portfolio website built with SvelteKit and D3.js to showcase data visualization projects.
+Portfolio website built with SvelteKit and Tailwind CSS to showcase data visualization projects.
 
 ## Sections
 
