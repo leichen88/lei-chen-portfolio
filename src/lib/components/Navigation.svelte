@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	const { activeSection = '' } = $props<{ activeSection?: string }>();
 
 	const navItems = [
@@ -68,7 +69,7 @@
 					onclick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
 					class="flex items-center text-gray-200 light:text-gray-800"
 				>
-					<img src={isDarkMode ? '/logo-white.svg' : '/logo-black.svg'} alt="Logo" class="logo-svg" />
+					<img src={base ? `${base}/${isDarkMode ? 'logo-white.svg' : 'logo-black.svg'}` : isDarkMode ? 'logo-white.svg' : 'logo-black.svg'} alt="Logo" class="logo-svg" />
 				</a>
 			</div>
 
