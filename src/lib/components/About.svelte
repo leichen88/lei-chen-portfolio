@@ -157,7 +157,7 @@
 		<!-- CV Download Link -->
 			<div class="pt-10">
 				<a
-					href="/download/cv_LeiChen.pdf"
+					href="download/cv_LeiChen.pdf"
 					target="_blank"
 					class="inline-flex items-center text-primary-400 light:text-primary-600 hover:text-primary-300 light:hover:text-primary-600 font-light transition-colors duration-200"
 				>
