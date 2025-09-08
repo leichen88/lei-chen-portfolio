@@ -13,8 +13,7 @@ Portfolio website built with SvelteKit and D3.js to showcase data visualization 
 
 - **Framework**: SvelteKit
 - **Styling**: Tailwind CSS
-- **Visualizations**: D3.js
-- **Animations**: GSAP
+- **Visualizations**: Threlte
 - **TypeScript**: Full type safety
 - **Build Tool**: Vite
 
@@ -36,18 +35,6 @@ npm run dev
 
 ```bash
 npm run build
-```
-
-## Project Structure
-
-```
-src/
-├── lib/
-│   ├── components/     # Reusable components
-│   ├── utils/         # Utility functions
-│   └── types/         # TypeScript type definitions
-├── routes/            # Page routes
-└── static/            # Static assets
 ```
 
 ## License
