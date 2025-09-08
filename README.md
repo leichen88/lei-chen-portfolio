@@ -1,21 +1,12 @@
-# Data Visualization Portfolio
+# Work Portfolio
 
-A modern, responsive portfolio website built with SvelteKit and D3.js to showcase data visualization projects.
-
-## Features
-
-- **Modern Design**: Clean, responsive layout with Tailwind CSS
-- **Interactive Visualizations**: D3.js integration for data visualizations
-- **Smooth Animations**: GSAP animations for engaging user experience
-- **TypeScript**: Full type safety throughout the application
-- **SEO Optimized**: Proper meta tags and structured data
+Portfolio website built with SvelteKit and D3.js to showcase data visualization projects.
 
 ## Sections
 
 - **Hero**: Eye-catching introduction with animated elements
 - **About**: Professional background and skills overview
 - **Projects**: Showcase of data visualization projects with interactive demos
-- **Skills**: Technical skills and tools proficiency
 - **Contact**: Contact form and social links
 
 ## Tech Stack
@@ -59,14 +50,7 @@ src/
 └── static/            # Static assets
 ```
 
-## Customization
-
-- Update personal information in the component files
-- Add your projects to the Projects component
-- Modify colors and styling in Tailwind config
-- Add new visualizations using D3.js
-
 ## License
 
 MIT License - feel free to use this template for your own portfolio!
-# portfolio
+
