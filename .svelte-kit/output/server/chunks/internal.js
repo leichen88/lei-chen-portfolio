@@ -2,6 +2,7 @@ import { H as HYDRATION_ERROR, C as COMMENT_NODE, a as HYDRATION_START, b as HYD
 import { g as get_next_sibling, d as define_property, s as set_active_reaction, a as set_active_effect, i as is_array, b as active_effect, c as active_reaction, e as init_operations, f as get_first_child, h as hydration_failed, j as clear_text_content, k as array_from, l as component_root, m as create_text, n as branch, p as push, o as component_context, q as pop, r as set, t as get, u as flushSync, v as mutable_source } from "./runtime.js";
 import "clsx";
 import "./environment.js";
+import "./paths.js";
 let public_env = {};
 function set_private_env(environment) {
 }
@@ -465,7 +466,7 @@ const options = {
   service_worker: false,
   service_worker_options: void 0,
   templates: {
-    app: ({ head, body, assets, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" class="dark">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets + '/favicon_2.svg" />\n		<meta name="viewport" content="width=device-width" />\n		\n		<!-- Primary Meta Tags -->\n		<title>Lei Chen - Data Visualization Specialist</title>\n		<meta name="title" content="Lei Chen - Data Visualization Specialist">\n		<meta name="description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">\n		<meta name="keywords" content="data visualization, humanitarian, UNHCR, IOM, data stories, dashboards, infographics, D3.js, Svelte, mapping, GIS">\n		<meta name="author" content="Lei Chen">\n				\n		<!-- Theme Color -->\n		<meta name="theme-color" content="#0f172a">\n		<meta name="msapplication-TileColor" content="#0f172a">\n		\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body, assets, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" class="dark">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="favicon_2.svg" />\n		<meta name="viewport" content="width=device-width" />\n		\n		<!-- Primary Meta Tags -->\n		<title>Lei Chen - Data Visualization Specialist</title>\n		<meta name="title" content="Lei Chen - Data Visualization Specialist">\n		<meta name="description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">\n		<meta name="keywords" content="data visualization, humanitarian, UNHCR, IOM, data stories, dashboards, infographics, D3.js, Svelte, mapping, GIS">\n		<meta name="author" content="Lei Chen">\n				\n		<!-- Theme Color -->\n		<meta name="theme-color" content="#0f172a">\n		<meta name="msapplication-TileColor" content="#0f172a">\n		\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -537,7 +538,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "173idy2"
+  version_hash: "ym16m"
 };
 async function get_hooks() {
   let handle;

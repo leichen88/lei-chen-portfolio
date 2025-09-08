@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { base } from '$app/paths';
 
 	let projects = [
 		{
@@ -361,7 +362,7 @@
 						<div class="relative pt-[75%]"> <!-- 4:3 ratio -->
 							{#if project.image && project.image !== '/api/placeholder/400/250'}
 								<img
-									src={project.image}
+									src={base ? `${base}/${project.image}` : project.image}
 									alt={project.title}
 									class="absolute top-0 left-0 w-full h-full object-cover"
 								/>

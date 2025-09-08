@@ -6,7 +6,8 @@
     "isEntry": true,
     "imports": [
       "_internal.js",
-      "_environment.js"
+      "_environment.js",
+      "_paths.js"
     ]
   },
   "_environment.js": {
@@ -41,8 +42,13 @@
     "imports": [
       "_index2.js",
       "_runtime.js",
-      "_environment.js"
+      "_environment.js",
+      "_paths.js"
     ]
+  },
+  "_paths.js": {
+    "file": "chunks/paths.js",
+    "name": "paths"
   },
   "_runtime.js": {
     "file": "chunks/runtime.js",
@@ -71,6 +77,7 @@
     "imports": [
       "_shared.js",
       "_false.js",
+      "_paths.js",
       "_environment.js"
     ]
   },
@@ -94,7 +101,7 @@
     "isEntry": true,
     "imports": [
       "_false.js",
-      "_environment.js",
+      "_paths.js",
       "_exports.js",
       "_utils.js",
       "_index.js",
@@ -121,7 +128,8 @@
     "isEntry": true,
     "imports": [
       "_index2.js",
-      "_index.js"
+      "_index.js",
+      "_paths.js"
     ],
     "css": [
       "_app/immutable/assets/_page.DGrQk00m.css"
