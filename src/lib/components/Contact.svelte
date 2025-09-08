@@ -54,7 +54,7 @@
 		<!-- Copyright and built with information -->
 		<div class="mt-16 text-right">
 			<p class="text-sm text-gray-400 light:text-gray-600">
-				© {new Date().getFullYear()} Lei Chen. All rights reserved.
+				© {new Date().getFullYear()} Lei Chen.
 			</p>
 			<p class="text-sm text-gray-400 light:text-gray-600 mt-1">
 				Created using SvelteKit, Tailwind CSS, TypeScript, Threlte, and Visual Studio Code.
