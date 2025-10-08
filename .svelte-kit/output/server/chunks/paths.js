@@ -1,4 +1,4 @@
-let base = "/lei-chen-portfolio";
+let base = "/lei-chen";
 let assets = base;
 const app_dir = "_app";
 const initial = { base, assets };
