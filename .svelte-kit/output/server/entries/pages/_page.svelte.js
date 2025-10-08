@@ -1,5 +1,6 @@
 import "clsx";
-import { p as push, f as ensure_array_like, h as attr_class, i as attr, e as escape_html, c as pop, g as getContext, s as setContext, j as bind_props, k as stringify } from "../../chunks/index2.js";
+import { N as Navigation } from "../../chunks/Navigation.js";
+import { E as getContext, A as setContext, G as bind_props, B as pop, z as push, I as ensure_array_like, J as attr, F as escape_html, K as attr_class } from "../../chunks/index2.js";
 import { g as get, w as writable, d as derived } from "../../chunks/index.js";
 import * as THREE from "three";
 import { REVISION } from "three";
@@ -21,47 +22,6 @@ function fromStore(store) {
       return get(store);
     }
   };
-}
-function Navigation($$payload, $$props) {
-  push();
-  const { activeSection = "" } = $$props;
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" }
-  ];
-  const each_array = ensure_array_like(
-    // Set dark mode as default on component mount
-    // Scroll event listener for dynamic navigation
-    // Scrolling down and past threshold - hide nav
-    // Scrolling up - show nav
-    navItems
-  );
-  $$payload.out.push(`<nav${attr_class("fixed top-0 w-full bg-gray-900/10 light:bg-white/80 backdrop-blur-md light:border-gray-700/50 z-50 transition-transform duration-300 ease-in-out svelte-xou49m", void 0, { "nav-hidden": false })}><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-16"><div class="flex-shrink-0"><a href="#home" class="flex items-center text-gray-200 light:text-gray-800"><img${attr("src", "/logo-white.svg")} alt="Logo" class="logo-svg svelte-xou49m"/></a></div> <div class="hidden md:flex items-center space-x-4"><div class="flex items-baseline space-x-4"><!--[-->`);
-  for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-    let item = each_array[$$index];
-    $$payload.out.push(`<a${attr("href", item.href)}${attr_class(
-      `px-3 py-2 text-sm font-medium transition-colors duration-200 ${activeSection === item.href.slice(1) ? "text-primary-400 light:text-primary-600 bg-primary-900/30 light:bg-primary-50" : "text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600"}`,
-      "svelte-xou49m"
-    )}>${escape_html(item.name)}</a>`);
-  }
-  $$payload.out.push(`<!--]--></div> <button class="p-2 rounded-md text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600 transition-colors duration-200" aria-label="Toggle dark mode">`);
-  {
-    $$payload.out.push("<!--[-->");
-    $$payload.out.push(`<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>`);
-  }
-  $$payload.out.push(`<!--]--></button></div> <div class="md:hidden"><button class="inline-flex items-center justify-center p-2 rounded-md text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600 hover:bg-gray-700 light:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"><span class="sr-only">Open main menu</span> `);
-  {
-    $$payload.out.push("<!--[!-->");
-    $$payload.out.push(`<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`);
-  }
-  $$payload.out.push(`<!--]--></button></div></div></div> `);
-  {
-    $$payload.out.push("<!--[!-->");
-  }
-  $$payload.out.push(`<!--]--></nav>`);
-  pop();
 }
 const signal = Symbol();
 const isStore = (dep) => {
@@ -598,102 +558,11 @@ function ThreeBackground($$payload, $$props) {
 function Hero($$payload, $$props) {
   push();
   let animatedText = "";
-  $$payload.out.push(`<section id="home" class="h-screen bg-gray-900 light:bg-white relative overflow-hidden">`);
+  $$payload.out.push(`<section id="home" class="h-screen bg-gray-900 relative overflow-hidden">`);
   ThreeBackground($$payload);
-  $$payload.out.push(`<!---->  <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/10 light:bg-accent-600/20 rounded-full blur-3xl animate-pulse-slow delay-1000"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center relative z-10"><div class="w-full"><p class="text-xl text-primary-400 light:text-primary-600 max-w-2xl leading-relaxed font-light">Hi, my name is</p> <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white light:text-gray-900 mb-6 leading-tight"><span class="text-white light:text-gray-800">Lei Chen</span></h1> <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 light:text-gray-800 mb-8 min-h-[2.5rem] tracking-wide">${escape_html(animatedText)} <span class="animate-pulse text-primary-400 light:text-primary-500">|</span></h2> <p class="text-xl text-gray-400 light:text-gray-700 mb-12 max-w-2xl leading-relaxed font-light">I enjoy transforming complex data into compelling visual stories through 
-				interactive dashboards, beautiful charts, and insightful analytics.</p></div></div> <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><svg class="w-6 h-6 text-primary-400 light:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></div></section>`);
+  $$payload.out.push(`<!----> <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center relative z-10"><div class="w-full"><p class="text-xl text-primary-400 max-w-2xl leading-relaxed font-light">Hi, my name is</p> <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"><span class="text-white">Lei Chen</span></h1> <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 mb-8 min-h-[2.5rem] tracking-wide">${escape_html(animatedText)} <span class="animate-pulse text-primary-400">|</span></h2> <p class="text-xl text-gray-400 mb-12 max-w-2xl leading-relaxed font-light">I enjoy transforming complex data into compelling visual stories through 
+				interactive dashboards, beautiful charts, and insightful analytics.</p></div></div> <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"><svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></div></section>`);
   pop();
-}
-function About($$payload) {
-  let experience = [
-    {
-      id: 1,
-      year: "2021-2025",
-      title: "Information Management Officer (Data Visualization)",
-      organization: "UNHCR HQ, Geneva (remote)",
-      description: "Created innovative data visualization products (Data stories, dashboards, infographics) to highlight humanitarian crises and enhance global awareness. Led development of UNHCR's Data Visualization Platform and trained staff globally on data storytelling best practices.",
-      tools: [
-        "Illustrator",
-        "QGIS",
-        "Mapbox",
-        "HTML/CSS/JS",
-        "Svelte",
-        "Python",
-        "PowerBI",
-        "Datawrapper",
-        "Figma"
-      ],
-      isOpen: false
-    },
-    {
-      id: 2,
-      year: "2019-2020",
-      title: "Information Management Officer (WASH & ESNFI)",
-      organization: "IOM Ethiopia, Addis Ababa",
-      description: "Designed centralized data systems for emergency response programs. Developed interactive dashboards and maps to monitor humanitarian needs and program impact across 10+ field operations.",
-      tools: [
-        "Kobo Toolbox",
-        "Arcgis",
-        "Excel/Power BI",
-        "Illustrator",
-        "Python"
-      ],
-      isOpen: false
-    },
-    {
-      id: 3,
-      year: "2018",
-      title: "Associate Information Management Officer (Data Visualization)",
-      organization: "UNHCR Bangladesh, Cox's Bazar",
-      description: "Standardized data products and produced key visualizations for Rohingya refugee response. Managed health/nutrition data and delivered data visualization training to improve reporting efficiency.",
-      tools: ["Illustrator", "Power BI", "Arcgis", "Excel"],
-      isOpen: false
-    },
-    {
-      id: 4,
-      year: "2016-2017",
-      title: "Information Management Associate (Data Visualization & GIS)",
-      organization: "UNHCR HQ, Geneva",
-      description: "Analyzed and visualized complex humanitarian datasets to guide strategic decisions. Designed infographics and interactive web maps for crises in Syria, South Sudan, and Yemen.",
-      tools: ["ArcGIS", "Illustrator", "Excel", "InDesign"],
-      isOpen: false
-    },
-    {
-      id: 5,
-      year: "2015-2016",
-      title: "CCCM Associate (Graphic Design & Information Management)",
-      organization: "UNHCR HQ, Geneva",
-      description: "Developed tools for field data harvesting and created communication templates for the Global CCCM Cluster. Maintained and updated cluster website resources.",
-      tools: [
-        "InDesign",
-        "Illustrator",
-        "WordPress",
-        "Excel",
-        "Kobo Toolbox"
-      ],
-      isOpen: false
-    }
-  ];
-  const each_array = ensure_array_like(experience);
-  $$payload.out.push(`<section id="about" class="py-20 bg-gray-900 light:bg-gray-50 svelte-308c6f"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 svelte-308c6f"><div class="mb-4 svelte-308c6f"><h2 class="text-3xl sm:text-4xl font-bold text-white light:text-gray-900 mb-8 svelte-308c6f">About Me</h2> <p class="text-gray-400 light:text-gray-700 svelte-308c6f">I’m a data visualization specialist with 9+ years of experience transforming complex datasets into clear, actionable visual stories. My career has spanned global organizations like UNHCR and IOM, where I’ve helped turn humanitarian data into tools that inform decisions, mobilize resources, and raise awareness.</p></div> <div class="space-y-12 svelte-308c6f"><div class="svelte-308c6f"><h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6 svelte-308c6f">My Humanitarian &amp; Data Visualization Journey</h3> <div class="space-y-4 text-gray-400 light:text-gray-600 svelte-308c6f"><p class="svelte-308c6f">Starting out, I focused on creating maps, dashboards, and infographics to support field operations. Over time, my role evolved into shaping visualization strategies at the global level. I’ve led the development of UNHCR’s Data Visualization Platform, designed visual products for flagship reports, and built interactive stories that brought urgent crises into focus for policymakers, donors, and the public.</p> <p class="svelte-308c6f">Through this journey, I’ve seen how the right visualization can bridge the gap between raw data and human understanding. For me, effective visualization is about clarity, empathy, and usability — distilling complexity without oversimplifying, and designing with both the data and the audience in mind.</p></div></div> <div class="svelte-308c6f"><h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6 svelte-308c6f">My Approach</h3> <div class="space-y-4 text-gray-400 light:text-gray-600 svelte-308c6f"><p class="svelte-308c6f">My practice combines three pillars:</p> <ul class="list-disc list-inside space-y-2 pl-5 svelte-308c6f"><li class="svelte-308c6f"><strong class="svelte-308c6f">Design Thinking for Data</strong> — approaching every project by first understanding the audience, their needs, and the decisions they need to make; then choosing the right form, level of detail, and visual encodings to guide them.</li> <li class="svelte-308c6f"><strong class="svelte-308c6f">Humanitarian Insight</strong> — working closely with field teams, analysts, and decision-makers has taught me to design for messy, incomplete, and time-sensitive data without losing sight of the people behind the numbers.</li> <li class="svelte-308c6f"><strong class="svelte-308c6f">Technical Craft</strong> — from prototyping to building the final product, I bring hands-on skills that allow me to move seamlessly from concept to execution, ensuring design intent is preserved through implementation.</li></ul></div></div> <div class="svelte-308c6f"><h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6 svelte-308c6f">Professional Experience</h3> <div class="space-y-0 svelte-308c6f"><!--[-->`);
-  for (let $$index_1 = 0, $$length = each_array.length; $$index_1 < $$length; $$index_1++) {
-    let item = each_array[$$index_1];
-    $$payload.out.push(`<div class="bg-gray-800 light:bg-gray-100 border-b border-gray-700 light:border-gray-200 last:border-b-0 svelte-308c6f"><button class="w-full p-4 text-left flex items-center justify-between hover:bg-gray-700 light:hover:bg-gray-50 transition-colors duration-200 svelte-308c6f"><div class="flex-1 min-w-0 svelte-308c6f"><h4 class="text-lg text-gray-300 light:text-gray-900 svelte-308c6f">${escape_html(item.title)}</h4> <p class="text-sm text-gray-500 light:text-gray-400 svelte-308c6f">${escape_html(item.organization)}</p></div> <div class="flex items-center space-x-4 svelte-308c6f"><div class="text-sm text-primary-400 light:text-primary-600 svelte-308c6f">${escape_html(item.year)}</div> <div${attr_class(`flex-shrink-0 transform transition-transform duration-400 ease-out ${stringify(item.isOpen ? "rotate-180" : "")}`, "svelte-308c6f")}><svg class="w-5 h-5 text-gray-300 light:text-gray-600 svelte-308c6f" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" class="svelte-308c6f"></path></svg></div></div></button> `);
-    if (item.isOpen) {
-      $$payload.out.push("<!--[-->");
-      const each_array_1 = ensure_array_like(item.tools);
-      $$payload.out.push(`<div class="p-4 pt-0 svelte-308c6f"><p class="text-gray-400 light:text-gray-700 text-sm mb-3 svelte-308c6f">${escape_html(item.description)}</p> <div class="flex flex-wrap gap-2 svelte-308c6f"><!--[-->`);
-      for (let $$index = 0, $$length2 = each_array_1.length; $$index < $$length2; $$index++) {
-        let tool = each_array_1[$$index];
-        $$payload.out.push(`<span class="pr-5 py-1 text-primary-400 light:text-primary-600 text-xs rounded-md svelte-308c6f">${escape_html(tool)}</span>`);
-      }
-      $$payload.out.push(`<!--]--></div></div>`);
-    } else {
-      $$payload.out.push("<!--[!-->");
-    }
-    $$payload.out.push(`<!--]--></div>`);
-  }
-  $$payload.out.push(`<!--]--></div></div></div> <div class="pt-10 svelte-308c6f"><a href="download/cv_LeiChen.pdf" target="_blank" class="inline-flex items-center text-primary-400 light:text-primary-600 hover:text-primary-300 light:hover:text-primary-600 font-light transition-colors duration-200 svelte-308c6f"><span class="svelte-308c6f">View Full CV</span> <svg class="w-5 h-5 ml-2 animate-arrow-right svelte-308c6f" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" class="svelte-308c6f"></path></svg></a></div></div></section>`);
 }
 function Projects($$payload, $$props) {
   push();
@@ -792,7 +661,7 @@ function Projects($$payload, $$props) {
       id: 10,
       title: "Data Visualization Guidelines",
       description: "Guidelines helping to produce effective, impactful, and standardized UNHCR data visualizations.",
-      technologies: ["Illustrator", "Indesign"],
+      technologies: ["Illustrator", "InDesign"],
       image: "projects/thumbnail-dataviz-guidelines.jpg",
       liveUrl: "https://dataviz.unhcr.org/guidance/",
       githubUrl: "#",
@@ -842,7 +711,7 @@ function Projects($$payload, $$props) {
       id: 15,
       title: "Mapping Guidelines",
       description: "Guidelines ensuring clarity, consistency, and impact in UNHCR’s mapping products.",
-      technologies: ["QGIS", "Illustrator", "Indesign"],
+      technologies: ["QGIS", "Illustrator", "InDesign"],
       image: "projects/thumbnail-mapping-guidelines.jpg",
       liveUrl: "https://dataviz.unhcr.org/download/UNHCR_Mapping_Guidelines_2024.pdf",
       githubUrl: "#",
@@ -976,14 +845,14 @@ function Projects($$payload, $$props) {
   let uniqueCategories = getUniqueCategories(projects);
   const each_array = ensure_array_like(uniqueCategories);
   const each_array_1 = ensure_array_like(filteredProjects.slice(0, visibleCount));
-  $$payload.out.push(`<section id="projects" class="py-20 bg-gray-900 light:bg-gray-50 svelte-181rzhi"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 svelte-181rzhi"><div class="mb-8 svelte-181rzhi"><h2 class="text-3xl sm:text-4xl font-bold text-white light:text-gray-900 mb-8 svelte-181rzhi">Featured Projects</h2> <p class="text-gray-400 light:text-gray-700 svelte-181rzhi">Explore my portfolio of data visualization projects that demonstrate technical expertise and creative problem-solving</p></div> <div class="flex flex-wrap gap-3 mb-8 svelte-181rzhi"><button${attr_class(
-    `pr-4 py-2 font-regular transition-colors duration-200 ${"text-primary-400 light:text-primary-600 font-semibold"}`,
+  $$payload.out.push(`<section id="projects" class="py-20 bg-gray-900 svelte-181rzhi"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 svelte-181rzhi"><div class="mb-8 svelte-181rzhi"><h2 class="text-3xl sm:text-4xl font-bold text-white mb-8 svelte-181rzhi">Featured Projects</h2> <p class="text-gray-400 svelte-181rzhi">Explore my portfolio of data visualization projects that demonstrate technical expertise and creative problem-solving</p></div> <div class="flex flex-wrap gap-3 mb-8 svelte-181rzhi"><button${attr_class(
+    `pr-4 py-2 font-regular transition-colors duration-200 ${"text-primary-400 font-semibold"}`,
     "svelte-181rzhi"
   )}>All</button> <!--[-->`);
   for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
     let category = each_array[$$index];
     $$payload.out.push(`<button${attr_class(
-      `pr-4 py-0 font-regulartransition-colors duration-200 ${selectedCategory === category ? "text-primary-400 light:text-primary-600 font-semibold" : "text-gray-300 light:text-gray-700 hover:text-primary-400 light:hover:text-primary-600"}`,
+      `pr-4 py-0 font-regulartransition-colors duration-200 ${selectedCategory === category ? "text-primary-400 font-semibold" : "text-gray-300 hover:text-primary-400"}`,
       "svelte-181rzhi"
     )}>${escape_html(category)}</button>`);
   }
@@ -991,44 +860,42 @@ function Projects($$payload, $$props) {
   for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
     let project = each_array_1[index];
     const each_array_2 = ensure_array_like(project.technologies);
-    $$payload.out.push(`<div class="bg-gray-800 light:bg-white overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 relative z-0 hover:z-10 svelte-181rzhi"><a${attr("href", project.liveUrl)} class="block bg-gray-700 light:bg-gray-100 overflow-hidden svelte-181rzhi"><div class="relative pt-[75%] svelte-181rzhi">`);
+    $$payload.out.push(`<div class="bg-gray-800 overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 relative z-0 hover:z-10 svelte-181rzhi"><a${attr("href", project.liveUrl)} class="block bg-gray-700 overflow-hidden svelte-181rzhi"><div class="relative pt-[75%] svelte-181rzhi">`);
     if (project.image && project.image !== "/api/placeholder/400/250") {
       $$payload.out.push("<!--[-->");
       $$payload.out.push(`<img${attr("src", base ? `${base}/${project.image}` : project.image)}${attr("alt", project.title)} class="absolute top-0 left-0 w-full h-full object-cover svelte-181rzhi"/>`);
     } else {
       $$payload.out.push("<!--[!-->");
-      $$payload.out.push(`<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center svelte-181rzhi"><svg class="w-10 h-10 text-primary-400 light:text-primary-500 opacity-70 svelte-181rzhi" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" class="svelte-181rzhi"></path></svg></div>`);
+      $$payload.out.push(`<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center svelte-181rzhi"><svg class="w-10 h-10 text-primary-400 opacity-70 svelte-181rzhi" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" class="svelte-181rzhi"></path></svg></div>`);
     }
-    $$payload.out.push(`<!--]--></div></a> <div class="p-6 svelte-181rzhi"><a${attr("href", project.liveUrl)} class="text-xl font-semibold text-gray-200 light:text-gray-900 mb-0 hover:text-primary-600 light:hover:text-primary-600 svelte-181rzhi">${escape_html(project.title)}</a> <p class="text-gray-400 light:text-gray-700 mb-2 text-sm svelte-181rzhi">${escape_html(project.description)}</p> <div class="flex flex-wrap gap-2 svelte-181rzhi"><!--[-->`);
+    $$payload.out.push(`<!--]--></div></a> <div class="p-6 svelte-181rzhi"><a${attr("href", project.liveUrl)} class="text-xl font-semibold text-gray-200 mb-0 hover:text-primary-600 svelte-181rzhi">${escape_html(project.title)}</a> <p class="text-gray-400 mb-2 text-sm svelte-181rzhi">${escape_html(project.description)}</p> <div class="flex flex-wrap gap-2 svelte-181rzhi"><!--[-->`);
     for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
       let tech = each_array_2[$$index_1];
-      $$payload.out.push(`<span class="pr-1 text-primary-400 light:text-primary-600 text-xs svelte-181rzhi">${escape_html(tech)}</span>`);
+      $$payload.out.push(`<span class="pr-1 text-primary-400 text-xs svelte-181rzhi">${escape_html(tech)}</span>`);
     }
     $$payload.out.push(`<!--]--></div></div></div>`);
   }
   $$payload.out.push(`<!--]--></div> `);
   {
     $$payload.out.push("<!--[-->");
-    $$payload.out.push(`<div class="pt-10 svelte-181rzhi"><a href="#" class="inline-flex items-center text-primary-400 light:text-primary-600 hover:text-primary-300 light:hover:text-primary-700 font-light transition-colors duration-200 svelte-181rzhi"><span class="svelte-181rzhi">Load More Projects</span> <svg class="w-5 h-5 ml-2 animate-arrow-right svelte-181rzhi" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" class="svelte-181rzhi"></path></svg></a></div>`);
+    $$payload.out.push(`<div class="pt-10 svelte-181rzhi"><a href="#" class="inline-flex items-center text-primary-400 hover:text-primary-300 font-light transition-colors duration-200 svelte-181rzhi"><span class="svelte-181rzhi">Load More Projects</span> <svg class="w-5 h-5 ml-2 animate-arrow-right svelte-181rzhi" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" class="svelte-181rzhi"></path></svg></a></div>`);
   }
   $$payload.out.push(`<!--]--></div></section>`);
   pop();
 }
 function Contact($$payload, $$props) {
   push();
-  $$payload.out.push(`<section id="contact" class="py-20 bg-gray-800 light:bg-gray-100"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-12"><h2 class="text-3xl sm:text-4xl font-bold text-white light:text-gray-900 mb-8">Get In Touch</h2> <p class="text-lg text-gray-400 light:text-gray-700 max-w-2xl">Interested in working together? Reach out via email or connect on social platforms.</p></div> <div class="flex flex-col sm:flex-row gap-4"><a href="mailto:lei.chen.88@hotmail.com" rel="noopener noreferrer" aria-label="Go To Lei Chen LinkedIn Page" class="pr-6 py-3 font-medium text-gray-300 light:text-gray-700 transition-colors duration-200 hover:text-primary-400 light:hover:text-primary-600"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a> <a href="https://www.linkedin.com/in/lei-chen-a2156987/" target="_blank" rel="noopener noreferrer" aria-label="Go To Lei Chen LinkedIn Page" class="pr-6 py-3 font-medium text-gray-300 light:text-gray-700 transition-colors duration-200 hover:text-primary-400 light:hover:text-primary-600"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064  2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a> <a href="https://github.com/leichen88" target="_blank" rel="noopener noreferrer" aria-label="Go To Lei Chen Github Page" class="pr-6 py-3 font-medium text-gray-300 light:text-gray-700 transition-colors duration-200 hover:text-primary-400 light:hover:text-primary-600"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a></div> <div class="mt-16 text-right"><p class="text-sm text-gray-400 light:text-gray-600">© ${escape_html(
+  $$payload.out.push(`<section id="contact" class="py-20 bg-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="mb-12"><h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Get In Touch</h2> <p class="text-lg text-gray-400 max-w-2xl">Interested in working together? Reach out via email or connect on social platforms.</p></div> <div class="flex flex-col sm:flex-row gap-4"><a href="mailto:lei.chen.88@hotmail.com" rel="noopener noreferrer" aria-label="Go To Lei Chen LinkedIn Page" class="pr-6 py-3 font-medium text-gray-300 transition-colors duration-200 hover:text-primary-400"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a> <a href="https://www.linkedin.com/in/lei-chen-a2156987/" target="_blank" rel="noopener noreferrer" aria-label="Go To Lei Chen LinkedIn Page" class="pr-6 py-3 font-medium text-gray-300 transition-colors duration-200 hover:text-primary-400"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064  2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a> <a href="https://github.com/leichen88" target="_blank" rel="noopener noreferrer" aria-label="Go To Lei Chen Github Page" class="pr-6 py-3 font-medium text-gray-300 transition-colors duration-200 hover:text-primary-400"><svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a></div> <div class="mt-16 text-right"><p class="text-sm text-gray-400">© ${escape_html(
     // Contact component with text labels and button boxes
     (/* @__PURE__ */ new Date()).getFullYear()
-  )} Lei Chen.</p> <p class="text-sm text-gray-400 light:text-gray-600 mt-1">Created using SvelteKit, Tailwind CSS, TypeScript, Threlte, and Visual Studio Code.</p></div></div></section>`);
+  )} Lei Chen.</p> <p class="text-sm text-gray-400 mt-1">Created using SvelteKit, Tailwind CSS, TypeScript, Threlte, and Visual Studio Code.</p></div></div></section>`);
   pop();
 }
 function _page($$payload) {
   $$payload.out.push(`<main class="min-h-screen">`);
-  Navigation($$payload, {});
+  Navigation($$payload);
   $$payload.out.push(`<!----> `);
   Hero($$payload);
-  $$payload.out.push(`<!----> `);
-  About($$payload);
   $$payload.out.push(`<!----> `);
   Projects($$payload);
   $$payload.out.push(`<!----> `);

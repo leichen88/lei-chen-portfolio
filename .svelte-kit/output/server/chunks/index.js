@@ -1,20 +1,4 @@
-import { w as noop, x as untrack, y as safe_not_equal, z as run_all } from "./runtime.js";
-import "clsx";
-function subscribe_to_store(store, run, invalidate) {
-  if (store == null) {
-    run(void 0);
-    if (invalidate) invalidate(void 0);
-    return noop;
-  }
-  const unsub = untrack(
-    () => store.subscribe(
-      run,
-      // @ts-expect-error
-      invalidate
-    )
-  );
-  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
-}
+import { M as noop, N as safe_not_equal, O as subscribe_to_store, P as run_all } from "./index2.js";
 const subscriber_queue = [];
 function readable(value, start) {
   return {

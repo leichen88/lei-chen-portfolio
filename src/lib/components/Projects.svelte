@@ -98,7 +98,7 @@
 			id: 10,
 			title: 'Data Visualization Guidelines',
 			description: 'Guidelines helping to produce effective, impactful, and standardized UNHCR data visualizations.',
-			technologies: ['Illustrator', 'Indesign'],
+			technologies: ['Illustrator', 'InDesign'],
 			image: 'projects/thumbnail-dataviz-guidelines.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/guidance/',
 			githubUrl: '#',
@@ -148,7 +148,7 @@
 			id: 15,
 			title: 'Mapping Guidelines',
 			description: 'Guidelines ensuring clarity, consistency, and impact in UNHCR’s mapping products.',
-			technologies: ['QGIS', 'Illustrator', 'Indesign'],
+			technologies: ['QGIS', 'Illustrator', 'InDesign'],
 			image: 'projects/thumbnail-mapping-guidelines.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/download/UNHCR_Mapping_Guidelines_2024.pdf',
 			githubUrl: '#',
@@ -314,12 +314,12 @@
 
 </script>
 
-<section id="projects" class="py-20 bg-gray-900 light:bg-gray-50">
+<section id="projects" class="py-20 bg-gray-900">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<!-- Header -->
 		<div class="mb-8">
-			<h2 class="text-3xl sm:text-4xl font-bold text-white light:text-gray-900 mb-8">Featured Projects</h2>
-			<p class="text-gray-400 light:text-gray-700">
+			<h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Featured Projects</h2>
+			<p class="text-gray-400">
 				Explore my portfolio of data visualization projects that demonstrate technical expertise and creative problem-solving
 			</p>
 		</div>
@@ -330,8 +330,8 @@
 				onclick={() => filterProjects('all')}
 				class={`pr-4 py-2 font-regular transition-colors duration-200 ${
 					selectedCategory === 'all'
-						? 'text-primary-400 light:text-primary-600 font-semibold'
-						: 'text-gray-300 light:text-gray-700 hover:text-primary-400 light:hover:text-primary-600'
+						? 'text-primary-400 font-semibold'
+						: 'text-gray-300 hover:text-primary-400'
 				}`}
 			>
 				All
@@ -341,8 +341,8 @@
 					onclick={() => filterProjects(category)}
 					class={`pr-4 py-0 font-regulartransition-colors duration-200 ${
 						selectedCategory === category
-							? 'text-primary-400 light:text-primary-600 font-semibold'
-							: 'text-gray-300 light:text-gray-700 hover:text-primary-400 light:hover:text-primary-600'
+							? 'text-primary-400 font-semibold'
+							: 'text-gray-300 hover:text-primary-400'
 					}`}
 				>
 					{category}
@@ -354,11 +354,11 @@
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{#each filteredProjects.slice(0, visibleCount) as project, index (project.id)}
 				<div
-					class="bg-gray-800 light:bg-white overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 relative z-0 hover:z-10"
+					class="bg-gray-800 overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 relative z-0 hover:z-10"
 					in:fade={{ duration: 300 }}
 				>
 					<!-- Project Image - Standard 4:3 ratio with proper cropping -->
-					<a href={project.liveUrl} class="block bg-gray-700 light:bg-gray-100 overflow-hidden">
+					<a href={project.liveUrl} class="block bg-gray-700 overflow-hidden">
 						<div class="relative pt-[75%]"> <!-- 4:3 ratio -->
 							{#if project.image && project.image !== '/api/placeholder/400/250'}
 								<img
@@ -368,7 +368,7 @@
 								/>
 							{:else}
 								<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-									<svg class="w-10 h-10 text-primary-400 light:text-primary-500 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<svg class="w-10 h-10 text-primary-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
 									</svg>
 								</div>
@@ -378,15 +378,15 @@
 
 					<!-- Project Content -->
 					<div class="p-6">
-						<a href={project.liveUrl} class="text-xl font-semibold text-gray-200 light:text-gray-900 mb-0 hover:text-primary-600 light:hover:text-primary-600">
+						<a href={project.liveUrl} class="text-xl font-semibold text-gray-200 mb-0 hover:text-primary-600">
 							{project.title}
 						</a>
-						<p class="text-gray-400 light:text-gray-700 mb-2 text-sm">{project.description}</p>
+						<p class="text-gray-400 mb-2 text-sm">{project.description}</p>
 
 						<!-- Technologies - Simplified -->
 						<div class="flex flex-wrap gap-2">
 							{#each project.technologies as tech}
-								<span class="pr-1 text-primary-400 light:text-primary-600 text-xs">
+								<span class="pr-1 text-primary-400 text-xs">
 									{tech}
 								</span>
 							{/each}
@@ -402,7 +402,7 @@
 				<a
 					href="#"
 					onclick={(e) => { e.preventDefault(); loadMore(); }}
-					class="inline-flex items-center text-primary-400 light:text-primary-600 hover:text-primary-300 light:hover:text-primary-700 font-light transition-colors duration-200"
+					class="inline-flex items-center text-primary-400 hover:text-primary-300 font-light transition-colors duration-200"
 				>
 					<span>Load More Projects</span>
 					<svg class="w-5 h-5 ml-2 animate-arrow-right" fill="none" stroke="currentColor" viewBox="0 0 24 24">

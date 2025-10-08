@@ -1,0 +1,106 @@
+import "clsx";
+import { N as Navigation } from "../../../chunks/Navigation.js";
+import { I as ensure_array_like, F as escape_html, K as attr_class, Q as stringify } from "../../../chunks/index2.js";
+function About($$payload) {
+  let experience = [
+    {
+      id: 1,
+      year: "2021-2025",
+      title: "Information Management Officer (Data Visualization)",
+      organization: "UNHCR HQ, Geneva (remote)",
+      description: "Created innovative data visualization products (Data stories, dashboards, infographics) to highlight humanitarian crises and enhance global awareness. Led development of UNHCR's Data Visualization Platform and trained staff globally on data storytelling best practices.",
+      tools: [
+        "Illustrator",
+        "InDesign",
+        "QGIS",
+        "Mapbox",
+        "HTML/CSS/JS",
+        "Svelte",
+        "Python",
+        "PowerBI",
+        "Datawrapper",
+        "Figma"
+      ],
+      isOpen: false
+    },
+    {
+      id: 2,
+      year: "2019-2020",
+      title: "Information Management Officer (WASH & ESNFI)",
+      organization: "IOM Ethiopia, Addis Ababa",
+      description: "Designed centralized data systems for emergency response programs. Developed interactive dashboards and maps to monitor humanitarian needs and program impact across 10+ field operations.",
+      tools: [
+        "Kobo Toolbox",
+        "Arcgis",
+        "Excel/Power BI",
+        "Illustrator",
+        "InDesign",
+        "Python"
+      ],
+      isOpen: false
+    },
+    {
+      id: 3,
+      year: "2018",
+      title: "Associate Information Management Officer (Data Visualization)",
+      organization: "UNHCR Bangladesh, Cox's Bazar",
+      description: "Standardized data products and produced key visualizations for Rohingya refugee response. Managed health/nutrition data and delivered data visualization training to improve reporting efficiency.",
+      tools: ["Illustrator", "InDesign", "Power BI", "Arcgis", "Excel"],
+      isOpen: false
+    },
+    {
+      id: 4,
+      year: "2016-2017",
+      title: "Information Management Associate (Data Visualization & GIS)",
+      organization: "UNHCR HQ, Geneva",
+      description: "Analyzed and visualized complex humanitarian datasets to guide strategic decisions. Designed infographics and interactive web maps for crises in Syria, South Sudan, and Yemen.",
+      tools: ["ArcGIS", "Illustrator", "Excel", "InDesign"],
+      isOpen: false
+    },
+    {
+      id: 5,
+      year: "2015-2016",
+      title: "CCCM Associate (Graphic Design & Information Management)",
+      organization: "UNHCR HQ, Geneva",
+      description: "Developed tools for field data harvesting and created communication templates for the Global CCCM Cluster. Maintained and updated cluster website resources.",
+      tools: [
+        "InDesign",
+        "Illustrator",
+        "WordPress",
+        "Excel",
+        "Kobo Toolbox"
+      ],
+      isOpen: false
+    }
+  ];
+  const each_array = ensure_array_like(experience);
+  $$payload.out.push(`<section id="about" class="py-20 bg-gray-900 svelte-qj18fo"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 svelte-qj18fo"><div class="pt-10 svelte-qj18fo"><h2 class="text-3xl sm:text-4xl font-bold text-white mb-8 svelte-qj18fo">About Me</h2> <p class="text-gray-400 svelte-qj18fo">I’m a data visualization designer with 9+ years of experience turning complex datasets into clear, impactful visual stories. My work sits at the intersection of design, data, and storytelling—crafting visuals that don’t just inform but also engage and drive action. Across my career at organizations like UNHCR and International Organization for Migration, I’ve used visualization as a strategic communication tool to clarify complexity, mobilize resources, and amplify critical issues to decision-makers and the public.</p></div> <div class="pt-10 svelte-qj18fo"><h3 class="text-2xl font-semibold text-gray-300 mb-6 svelte-qj18fo">My Humanitarian &amp; Data Visualization Journey</h3> <div class="space-y-4 text-gray-400 svelte-qj18fo"><p class="svelte-qj18fo">I began my career designing maps, infographics, dashboards and reports to support field operations and emergency response. Over time, I moved from individual visual products to shaping visualization strategies at a global scale.</p> <p class="svelte-qj18fo">I led the development of UNHCR’s Data Visualization Platform, built interactive data stories to spotlight urgent crises, and designed flagship report visuals that helped frame key policy discussions. My work has reached diverse audiences — from field officers to policymakers and journalists — always with a focus on clarity, precision, and impact. For me, good visualization is good communication: it bridges the gap between raw data and human understanding, balancing analytical rigor with accessible, elegant design.</p></div></div> <div class="pt-10 svelte-qj18fo"><h3 class="text-2xl font-semibold text-gray-300 mb-6 svelte-qj18fo">My Approach</h3> <div class="space-y-4 text-gray-400 svelte-qj18fo"><p class="svelte-qj18fo">My design practice is grounded in three core pillars:</p> <ul class="list-disc list-inside space-y-2 pl-5 svelte-qj18fo"><li class="svelte-qj18fo"><strong class="svelte-qj18fo">Design Thinking for Data</strong> — I start by understanding the audience, their goals, and the decisions they need to make. This drives choices in visual form, hierarchy, and interaction.</li> <li class="svelte-qj18fo"><strong class="svelte-qj18fo">Humanitarian Insight</strong> — Years of working with analysts and field teams taught me to design for real-world data: messy, incomplete, and time-sensitive — without losing sight of the human stories behind it.</li> <li class="svelte-qj18fo"><strong class="svelte-qj18fo">Technical Craft</strong> — From early sketches to high-fidelity prototypes and production builds, I work hands-on with tools like Figma, Illustrator, InDesign, and D3.js to ensure that design intent is preserved through every stage of implementation.</li></ul></div></div> <div class="pt-10 svelte-qj18fo"><h3 class="text-2xl font-semibold text-gray-300 mb-6 svelte-qj18fo">Professional Experience</h3> <div class="space-y-0 svelte-qj18fo"><!--[-->`);
+  for (let $$index_1 = 0, $$length = each_array.length; $$index_1 < $$length; $$index_1++) {
+    let item = each_array[$$index_1];
+    $$payload.out.push(`<div class="bg-gray-800 border-b border-gray-700 last:border-b-0 svelte-qj18fo"><button class="w-full p-4 text-left flex items-center justify-between hover:bg-gray-700 transition-colors duration-200 svelte-qj18fo"><div class="flex-1 min-w-0 svelte-qj18fo"><h4 class="text-lg text-gray-300 svelte-qj18fo">${escape_html(item.title)}</h4> <p class="text-sm text-gray-500 svelte-qj18fo">${escape_html(item.organization)}</p></div> <div class="flex items-center space-x-4 svelte-qj18fo"><div class="text-sm text-primary-400 svelte-qj18fo">${escape_html(item.year)}</div> <div${attr_class(`flex-shrink-0 transform transition-transform duration-400 ease-out ${stringify(item.isOpen ? "rotate-180" : "")}`, "svelte-qj18fo")}><svg class="w-5 h-5 text-gray-300 svelte-qj18fo" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" class="svelte-qj18fo"></path></svg></div></div></button> `);
+    if (item.isOpen) {
+      $$payload.out.push("<!--[-->");
+      const each_array_1 = ensure_array_like(item.tools);
+      $$payload.out.push(`<div class="p-4 pt-0 svelte-qj18fo"><p class="text-gray-400 text-sm mb-3 svelte-qj18fo">${escape_html(item.description)}</p> <div class="flex flex-wrap gap-2 svelte-qj18fo"><!--[-->`);
+      for (let $$index = 0, $$length2 = each_array_1.length; $$index < $$length2; $$index++) {
+        let tool = each_array_1[$$index];
+        $$payload.out.push(`<span class="pr-5 py-1 text-primary-400 text-xs rounded-md svelte-qj18fo">${escape_html(tool)}</span>`);
+      }
+      $$payload.out.push(`<!--]--></div></div>`);
+    } else {
+      $$payload.out.push("<!--[!-->");
+    }
+    $$payload.out.push(`<!--]--></div>`);
+  }
+  $$payload.out.push(`<!--]--></div></div> <div class="pt-10 svelte-qj18fo"><a href="download/cv_LeiChen.pdf" target="_blank" class="inline-flex items-center text-primary-400 hover:text-primary-300 font-light transition-colors duration-200 svelte-qj18fo"><span class="svelte-qj18fo">View Full CV</span> <svg class="w-5 h-5 ml-2 animate-arrow-right svelte-qj18fo" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" class="svelte-qj18fo"></path></svg></a></div></div></section>`);
+}
+function _page($$payload) {
+  $$payload.out.push(`<main class="min-h-screen">`);
+  Navigation($$payload);
+  $$payload.out.push(`<!----> `);
+  About($$payload);
+  $$payload.out.push(`<!----></main>`);
+}
+export {
+  _page as default
+};

@@ -10,6 +10,24 @@
       "_paths.js"
     ]
   },
+  "_Navigation.DS7J6TAw.css": {
+    "file": "_app/immutable/assets/Navigation.DS7J6TAw.css",
+    "src": "_Navigation.DS7J6TAw.css"
+  },
+  "_Navigation.js": {
+    "file": "chunks/Navigation.js",
+    "name": "Navigation",
+    "imports": [
+      "_index2.js",
+      "_paths.js",
+      "_exports.js",
+      "_utils.js",
+      "_state.svelte.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Navigation.DS7J6TAw.css"
+    ]
+  },
   "_environment.js": {
     "file": "chunks/environment.js",
     "name": "environment"
@@ -26,7 +44,7 @@
     "file": "chunks/index.js",
     "name": "index",
     "imports": [
-      "_runtime.js"
+      "_index2.js"
     ]
   },
   "_index2.js": {
@@ -41,7 +59,6 @@
     "name": "internal",
     "imports": [
       "_index2.js",
-      "_runtime.js",
       "_environment.js",
       "_paths.js"
     ]
@@ -50,19 +67,18 @@
     "file": "chunks/paths.js",
     "name": "paths"
   },
-  "_runtime.js": {
-    "file": "chunks/runtime.js",
-    "name": "runtime",
-    "imports": [
-      "_false.js",
-      "_index2.js"
-    ]
-  },
   "_shared.js": {
     "file": "chunks/shared.js",
     "name": "shared",
     "imports": [
       "_utils.js"
+    ]
+  },
+  "_state.svelte.js": {
+    "file": "chunks/state.svelte.js",
+    "name": "state.svelte",
+    "imports": [
+      "_index2.js"
     ]
   },
   "_utils.js": {
@@ -88,7 +104,7 @@
     "isEntry": true,
     "imports": [
       "_index2.js",
-      "_runtime.js",
+      "_state.svelte.js",
       "_exports.js",
       "_utils.js",
       "_index.js"
@@ -118,7 +134,7 @@
       "_index2.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.DFSHQI6-.css"
+      "_app/immutable/assets/_layout.B0g3SgMf.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -127,12 +143,26 @@
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
+      "_Navigation.js",
       "_index2.js",
       "_index.js",
       "_paths.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.DGrQk00m.css"
+      "_app/immutable/assets/_page.BfB7fUoA.css"
+    ]
+  },
+  "src/routes/about/+page.svelte": {
+    "file": "entries/pages/about/_page.svelte.js",
+    "name": "entries/pages/about/_page.svelte",
+    "src": "src/routes/about/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_Navigation.js",
+      "_index2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.DBKXq26K.css"
     ]
   }
 }

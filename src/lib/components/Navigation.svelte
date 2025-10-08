@@ -1,42 +1,92 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	const { activeSection = '' } = $props<{ activeSection?: string }>();
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	
+	let activeSection = $state('');
 
 	const navItems = [
-		{ name: 'Home', href: '#home' },
-		{ name: 'About', href: '#about' },
-		{ name: 'Projects', href: '#projects' },
-		{ name: 'Contact', href: '#contact' }
+		{ name: 'Home', href: '/', type: 'page' },
+		{ name: 'About', href: '/about', type: 'page' },
+		{ name: 'Projects', href: '#projects', type: 'section' },
+		{ name: 'Contact', href: '#contact', type: 'section' }
 	];
 
 	let isMenuOpen = $state(false);
-	let isDarkMode = $state(true);
 	let isNavVisible = $state(true);
 	let lastScrollY = $state(0);
 
-	function scrollToSection(href: string) {
-		const target = document.querySelector(href);
-		if (target) {
-			target.scrollIntoView({ behavior: 'smooth' });
-			isMenuOpen = false;
+	async function handleNavigation(href: string, type: string) {
+		isMenuOpen = false;
+		
+		if (type === 'page') {
+			// Handle page navigation
+			await goto(href);
+		} else if (type === 'section') {
+			// Handle section navigation (scroll to section)
+			if ($page.url.pathname !== '/') {
+				// If not on home page, navigate to home page first
+				await goto('/');
+				// Wait a bit for the page to load then scroll
+				setTimeout(() => {
+					const target = document.querySelector(href);
+					if (target) {
+						target.scrollIntoView({ behavior: 'smooth' });
+						activeSection = href.slice(1); // Set active section
+					}
+				}, 100);
+			} else {
+				// Already on home page, just scroll
+				const target = document.querySelector(href);
+				if (target) {
+					target.scrollIntoView({ behavior: 'smooth' });
+					activeSection = href.slice(1); // Set active section
+				}
+			}
 		}
 	}
 
-	function toggleDarkMode() {
-		isDarkMode = !isDarkMode;
-		if (isDarkMode) {
-			document.documentElement.classList.remove('light');
-		} else {
-			document.documentElement.classList.add('light');
+	function updateActiveSection() {
+		if ($page.url.pathname !== '/') return;
+		
+		const sections = ['projects', 'contact'];
+		const scrollPosition = window.scrollY + 100; // Offset for fixed nav
+		
+		// Reset activeSection if we're at the top (Hero section)
+		if (scrollPosition < 100) {
+			activeSection = '';
+			return;
 		}
+		
+		for (const section of sections) {
+			const element = document.getElementById(section);
+			if (element) {
+				const offsetTop = element.offsetTop;
+				const offsetBottom = offsetTop + element.offsetHeight;
+				
+				if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+					activeSection = section;
+					break;
+				}
+			}
+		}
+	}
+
+	function isActiveLink(href: string, type: string): boolean {
+		if (type === 'page') {
+			if (href === '/') {
+				// Home is active when on home page and no section is active
+				return $page.url.pathname === '/' && activeSection === '';
+			}
+			return $page.url.pathname === href;
+		} else if (type === 'section') {
+			return activeSection === href.slice(1);
+		}
+		return false;
 	}
 
 	$effect(() => {
-		// Set dark mode as default on component mount
-		document.documentElement.classList.remove('light');
-		isDarkMode = true;
-
-		// Scroll event listener for dynamic navigation
+		// Scroll event listener for dynamic navigation and section tracking
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY;
 			
@@ -49,9 +99,15 @@
 			}
 			
 			lastScrollY = currentScrollY;
+			
+			// Update active section based on scroll position
+			updateActiveSection();
 		};
 
 		window.addEventListener('scroll', handleScroll, { passive: true });
+		
+		// Initial section check
+		updateActiveSection();
 		
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
@@ -59,21 +115,19 @@
 	});
 </script>
 
-<nav class="fixed top-0 w-full bg-gray-900/10 light:bg-white/80 backdrop-blur-md light:border-gray-700/50 z-50 transition-transform duration-300 ease-in-out" class:nav-hidden={!isNavVisible}>
+<nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 transition-transform duration-300 ease-in-out" class:nav-hidden={!isNavVisible}>
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-16">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<a
-					href="#home"
-					onclick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
-					class="flex items-center text-gray-200 light:text-gray-800"
+					href="/"
+					onclick={(e) => { e.preventDefault(); handleNavigation('/', 'page'); }}
+					class="flex items-center text-gray-200 hover:text-primary-400 transition-colors duration-200"
 				>
-					<img src={base ? `${base}/${isDarkMode ? 'logo-white.svg' : 'logo-black.svg'}` : isDarkMode ? 'logo-white.svg' : 'logo-black.svg'} alt="Logo" class="logo-svg" />
+					<img src={base ? `${base}/logo-white.svg` : 'logo-white.svg'} alt="Logo" class="logo-svg" />
 				</a>
 			</div>
-
-			
 
 			<!-- Desktop Navigation -->
 			<div class="hidden md:flex items-center space-x-4">
@@ -81,40 +135,24 @@
 					{#each navItems as item}
 						<a
 							href={item.href}
-							onclick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-							class={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-								activeSection === item.href.slice(1)
-									? 'text-primary-400 light:text-primary-600 bg-primary-900/30 light:bg-primary-50'
-									: 'text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600'
+							onclick={(e) => { e.preventDefault(); handleNavigation(item.href, item.type); }}
+							class={`px-3 py-2 text-sm transition-colors duration-200 ${
+								isActiveLink(item.href, item.type)
+									? 'text-primary-400'
+									: 'text-white hover:text-primary-400'
 							}`}
 						>
 							{item.name}
 						</a>
 					{/each}
 				</div>
-				<!-- Theme Toggle -->
-				<button
-					onclick={toggleDarkMode}
-					class="p-2 rounded-md text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600 transition-colors duration-200"
-					aria-label="Toggle dark mode"
-				>
-					{#if isDarkMode}
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-						</svg>
-					{:else}
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-						</svg>
-					{/if}
-				</button>
 			</div>
 
 			<!-- Mobile menu button -->
 			<div class="md:hidden">
 				<button
 					onclick={() => isMenuOpen = !isMenuOpen}
-					class="inline-flex items-center justify-center p-2 rounded-md text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600 hover:bg-gray-700 light:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+					class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-primary-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200"
 				>
 					<span class="sr-only">Open main menu</span>
 					{#if isMenuOpen}
@@ -136,40 +174,20 @@
 	<!-- Mobile Navigation -->
 	{#if isMenuOpen}
 		<div class="md:hidden">
-			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900 light:bg-white border-t border-gray-700 light:border-gray-200">
+			<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900 border-t border-gray-700">
 				{#each navItems as item}
 					<a
 						href={item.href}
-						onclick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-						class={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-							activeSection === item.href.slice(1)
-							? 'text-primary-400 light:text-primary-600 bg-primary-900/30 light:bg-primary-50'
-							: 'text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600'
+						onclick={(e) => { e.preventDefault(); handleNavigation(item.href, item.type); }}
+						class={`block px-3 py-2 rounded-md text-base transition-colors duration-200 ${
+							isActiveLink(item.href, item.type)
+							? 'text-primary-400 bg-primary-900/30'
+							: 'text-white hover:text-primary-400'
 						}`}
 					>
 						{item.name}
 					</a>
 				{/each}
-				<!-- Theme Toggle for Mobile -->
-				<button
-					onclick={toggleDarkMode}
-					class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white light:text-gray-800 hover:text-primary-400 light:hover:text-primary-600 transition-colors duration-200"
-					aria-label="Toggle dark mode"
-				>
-					<div class="flex items-center">
-						{#if isDarkMode}
-							<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-							</svg>
-							Light Mode
-						{:else}
-							<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-							</svg>
-							Dark Mode
-						{/if}
-					</div>
-				</button>
 			</div>
 		</div>
 	{/if}
@@ -181,7 +199,6 @@
 		width: 45px;
 		height: 45px;
 	}
-
 
 	.nav-hidden {
 		transform: translateY(-100%);

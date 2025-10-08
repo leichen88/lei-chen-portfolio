@@ -1,15 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	
-	let stats = $state([
-		{ number: 100, label: 'Data Stories Created', suffix: '+' },
-		{ number: 9, label: 'Years Experience', suffix: '+' },
-		{ number: 50, label: 'Staff Trained', suffix: '+' },
-		{ number: 15, label: 'Countries Served', suffix: '+' }
-	]);
-
 	let experience = $state([
 		{
 			id: 1,
@@ -17,7 +9,7 @@
 			title: "Information Management Officer (Data Visualization)",
 			organization: "UNHCR HQ, Geneva (remote)",
 			description: "Created innovative data visualization products (Data stories, dashboards, infographics) to highlight humanitarian crises and enhance global awareness. Led development of UNHCR's Data Visualization Platform and trained staff globally on data storytelling best practices.",
-			tools: ["Illustrator", "QGIS", "Mapbox", "HTML/CSS/JS", "Svelte", "Python", "PowerBI", "Datawrapper", "Figma"],
+			tools: ["Illustrator", "InDesign", "QGIS", "Mapbox", "HTML/CSS/JS", "Svelte", "Python", "PowerBI", "Datawrapper", "Figma"],
 			isOpen: false
 		},
 		{
@@ -26,7 +18,7 @@
 			title: "Information Management Officer (WASH & ESNFI)",
 			organization: "IOM Ethiopia, Addis Ababa",
 			description: "Designed centralized data systems for emergency response programs. Developed interactive dashboards and maps to monitor humanitarian needs and program impact across 10+ field operations.",
-			tools: ["Kobo Toolbox", "Arcgis", "Excel/Power BI", "Illustrator", "Python"],
+			tools: ["Kobo Toolbox", "Arcgis", "Excel/Power BI", "Illustrator", "InDesign", "Python"],
 			isOpen: false
 		},
 		{
@@ -35,7 +27,7 @@
 			title: "Associate Information Management Officer (Data Visualization)",
 			organization: "UNHCR Bangladesh, Cox's Bazar",
 			description: "Standardized data products and produced key visualizations for Rohingya refugee response. Managed health/nutrition data and delivered data visualization training to improve reporting efficiency.",
-			tools: ["Illustrator", "Power BI", "Arcgis", "Excel"],
+			tools: ["Illustrator", "InDesign", "Power BI", "Arcgis", "Excel"],
 			isOpen: false
 		},
 		{
@@ -69,116 +61,101 @@
 	}
 </script>
 
-<section id="about" class="py-20 bg-gray-900 light:bg-gray-50">
+<section id="about" class="py-20 bg-gray-900">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="mb-4">
-			<h2 class="text-3xl sm:text-4xl font-bold text-white light:text-gray-900 mb-8">About Me</h2>
-			<p class="text-gray-400 light:text-gray-700">
-				I’m a data visualization specialist with 9+ years of experience transforming complex datasets into clear, actionable visual stories. My career has spanned global organizations like UNHCR and IOM, where I’ve helped turn humanitarian data into tools that inform decisions, mobilize resources, and raise awareness.
-			</p>
+		<div class="pt-10">
+		    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">About Me</h2>
+		    <p class="text-gray-400">
+			I’m a data visualization designer with 9+ years of experience turning complex datasets into clear, impactful visual stories. My work sits at the intersection of design, data, and storytelling—crafting visuals that don’t just inform but also engage and drive action. Across my career at organizations like UNHCR and International Organization for Migration, I’ve used visualization as a strategic communication tool to clarify complexity, mobilize resources, and amplify critical issues to decision-makers and the public.
+		    </p>
 		</div>
-
-		<div class="space-y-12">
-			<!-- Content Section -->
-			<div>
-				<h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6">My Humanitarian & Data Visualization Journey</h3>
+		<!-- Content Section -->
+		<div class="pt-10">
+			<h3 class="text-2xl font-semibold text-gray-300 mb-6">My Humanitarian & Data Visualization Journey</h3>
+			
+			<div class="space-y-4 text-gray-400">
+				<p>
+					I began my career designing maps, infographics, dashboards and reports to support field operations and emergency response. Over time, I moved from individual visual products to shaping visualization strategies at a global scale.
+				</p>
 				
-				<div class="space-y-4 text-gray-400 light:text-gray-600">
-					<p>
-						Starting out, I focused on creating maps, dashboards, and infographics to support field operations. Over time, my role evolved into shaping visualization strategies at the global level. I’ve led the development of UNHCR’s Data Visualization Platform, designed visual products for flagship reports, and built interactive stories that brought urgent crises into focus for policymakers, donors, and the public.
-					</p>
-					
-					<p>
-						Through this journey, I’ve seen how the right visualization can bridge the gap between raw data and human understanding. For me, effective visualization is about clarity, empathy, and usability — distilling complexity without oversimplifying, and designing with both the data and the audience in mind.
-					</p>
-				</div>
+				<p>
+					I led the development of UNHCR’s Data Visualization Platform, built interactive data stories to spotlight urgent crises, and designed flagship report visuals that helped frame key policy discussions. My work has reached diverse audiences — from field officers to policymakers and journalists — always with a focus on clarity, precision, and impact. For me, good visualization is good communication: it bridges the gap between raw data and human understanding, balancing analytical rigor with accessible, elegant design.
+				</p>
 			</div>
-
-			<!-- My Approach Section -->
-			<div>
-				<h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6">My Approach</h3>
-				
-				<div class="space-y-4 text-gray-400 light:text-gray-600">
-					<p>
-						My practice combines three pillars:
-					</p>
-					<ul class="list-disc list-inside space-y-2 pl-5">
-						<li><strong>Design Thinking for Data</strong> — approaching every project by first understanding the audience, their needs, and the decisions they need to make; then choosing the right form, level of detail, and visual encodings to guide them.</li>
-						<li><strong>Humanitarian Insight</strong> — working closely with field teams, analysts, and decision-makers has taught me to design for messy, incomplete, and time-sensitive data without losing sight of the people behind the numbers.</li>
-						<li><strong>Technical Craft</strong> — from prototyping to building the final product, I bring hands-on skills that allow me to move seamlessly from concept to execution, ensuring design intent is preserved through implementation.</li>
-					</ul>
-				</div>
+		</div>
+		<!-- My Approach Section -->
+		<div class="pt-10">
+			<h3 class="text-2xl font-semibold text-gray-300 mb-6">My Approach</h3>
+			<div class="space-y-4 text-gray-400">
+				<p>
+					My design practice is grounded in three core pillars:
+				</p>
+				<ul class="list-disc list-inside space-y-2 pl-5">
+					<li><strong>Design Thinking for Data</strong> — I start by understanding the audience, their goals, and the decisions they need to make. This drives choices in visual form, hierarchy, and interaction.</li>
+					<li><strong>Humanitarian Insight</strong> — Years of working with analysts and field teams taught me to design for real-world data: messy, incomplete, and time-sensitive — without losing sight of the human stories behind it.</li>
+					<li><strong>Technical Craft</strong> — From early sketches to high-fidelity prototypes and production builds, I work hands-on with tools like Figma, Illustrator, InDesign, and D3.js to ensure that design intent is preserved through every stage of implementation.</li>
+				</ul>
 			</div>
-
-			<!-- Experience Accordion Section -->
-			<div>
-				<h3 class="text-2xl font-semibold text-gray-300 light:text-gray-800 mb-6">Professional Experience</h3>
-				
-				<div class="space-y-0">
-					{#each experience as item}
-						<div class="bg-gray-800 light:bg-gray-100 border-b border-gray-700 light:border-gray-200 last:border-b-0">
-							<!-- Accordion Header -->
-							<button
-								class="w-full p-4 text-left flex items-center justify-between hover:bg-gray-700 light:hover:bg-gray-50 transition-colors duration-200"
-								onclick={() => toggleAccordion(item.id)}
-							>
-								<div class="flex-1 min-w-0">
-									<h4 class="text-lg text-gray-300 light:text-gray-900">{item.title}</h4>
-									<p class="text-sm text-gray-500 light:text-gray-400">{item.organization}</p>
+		</div>
+		<!-- Experience Accordion Section -->
+		<div class="pt-10">
+			<h3 class="text-2xl font-semibold text-gray-300 mb-6">Professional Experience</h3>
+			
+			<div class="space-y-0">
+				{#each experience as item}
+					<div class="bg-gray-800 border-b border-gray-700 last:border-b-0">
+						<!-- Accordion Header -->
+						<button
+							class="w-full p-4 text-left flex items-center justify-between hover:bg-gray-700 transition-colors duration-200"
+							onclick={() => toggleAccordion(item.id)}
+						>
+							<div class="flex-1 min-w-0">
+								<h4 class="text-lg text-gray-300">{item.title}</h4>
+								<p class="text-sm text-gray-500">{item.organization}</p>
+							</div>
+							<div class="flex items-center space-x-4">
+								<div class="text-sm text-primary-400">{item.year}</div>
+								<div class="flex-shrink-0 transform transition-transform duration-400 ease-out {item.isOpen ? 'rotate-180' : ''}">
+									<svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+									</svg>
 								</div>
-								<div class="flex items-center space-x-4">
-									<div class="text-sm text-primary-400 light:text-primary-600">{item.year}</div>
-									<div class="flex-shrink-0 transform transition-transform duration-400 ease-out {item.isOpen ? 'rotate-180' : ''}">
-										<svg class="w-5 h-5 text-gray-300 light:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-										</svg>
-									</div>
+							</div>
+						</button>
+						<!-- Accordion Content -->
+						{#if item.isOpen}
+							<div class="p-4 pt-0" transition:slide={{ duration: 400, easing: cubicOut }}>
+								<p class="text-gray-400 text-sm mb-3">{item.description}</p>
+								<div class="flex flex-wrap gap-2">
+									{#each item.tools as tool}
+										<span class="pr-5 py-1 text-primary-400 text-xs rounded-md">
+											{tool}
+										</span>
+									{/each}
 								</div>
-							</button>
-
-							<!-- Accordion Content -->
-							{#if item.isOpen}
-								<div class="p-4 pt-0" transition:slide={{ duration: 400, easing: cubicOut }}>
-									<p class="text-gray-400 light:text-gray-700 text-sm mb-3">{item.description}</p>
-									<div class="flex flex-wrap gap-2">
-										{#each item.tools as tool}
-											<span class="pr-5 py-1 text-primary-400 light:text-primary-600 text-xs rounded-md">
-												{tool}
-											</span>
-										{/each}
-									</div>
-								</div>
-							{/if}
-						</div>
-					{/each}
-				</div>
+							</div>
+						{/if}
+					</div>
+				{/each}
 			</div>
 		</div>
 		<!-- CV Download Link -->
-			<div class="pt-10">
-				<a
-					href="download/cv_LeiChen.pdf"
-					target="_blank"
-					class="inline-flex items-center text-primary-400 light:text-primary-600 hover:text-primary-300 light:hover:text-primary-600 font-light transition-colors duration-200"
-				>
-					<span>View Full CV</span>
-					<svg class="w-5 h-5 ml-2 animate-arrow-right" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-					</svg>
-				</a>
-			</div>
+		<div class="pt-10">
+			<a
+				href="download/cv_LeiChen.pdf"
+				target="_blank"
+				class="inline-flex items-center text-primary-400 hover:text-primary-300 font-light transition-colors duration-200"
+			>
+				<span>View Full CV</span>
+				<svg class="w-5 h-5 ml-2 animate-arrow-right" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+				</svg>
+			</a>
+		</div>
 	</div>
 </section>
 
 <style>
-	.skill-item {
-		transition: transform 0.2s ease;
-	}
-
-	.skill-item:hover {
-		transform: translateX(4px);
-	}
-
 	@keyframes arrowRight {
 		0%, 100% {
 			transform: translateX(0);
