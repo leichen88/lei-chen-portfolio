@@ -14,7 +14,7 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/lei-chen'
+			base: process.argv.includes('dev') ? '' : '/lei-chen-portfolio'
 		},
 		alias: {
 			$lib: './src/lib'
