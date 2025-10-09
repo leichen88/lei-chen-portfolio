@@ -32,7 +32,6 @@ declare module '$env/static/private' {
 	export const INIT_CWD: string;
 	export const NVM_CD_FLAGS: string;
 	export const TERM: string;
-	export const VTE_VERSION: string;
 	export const SHELL: string;
 	export const HOMEBREW_REPOSITORY: string;
 	export const TMPDIR: string;
@@ -56,7 +55,6 @@ declare module '$env/static/private' {
 	export const VSCODE_PROFILE_INITIALIZED: string;
 	export const __CF_USER_TEXT_ENCODING: string;
 	export const npm_execpath: string;
-	export const PAGER: string;
 	export const PATH: string;
 	export const GSETTINGS_SCHEMA_DIR: string;
 	export const npm_package_json: string;
@@ -94,7 +92,6 @@ declare module '$env/static/private' {
 	export const npm_config_user_agent: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const GIT_ASKPASS: string;
-	export const PROMPT_EOL_MARK: string;
 	export const INFOPATH: string;
 	export const HOMEBREW_CELLAR: string;
 	export const SECURITYSESSIONID: string;
@@ -137,7 +134,6 @@ declare module '$env/dynamic/private' {
 		INIT_CWD: string;
 		NVM_CD_FLAGS: string;
 		TERM: string;
-		VTE_VERSION: string;
 		SHELL: string;
 		HOMEBREW_REPOSITORY: string;
 		TMPDIR: string;
@@ -161,7 +157,6 @@ declare module '$env/dynamic/private' {
 		VSCODE_PROFILE_INITIALIZED: string;
 		__CF_USER_TEXT_ENCODING: string;
 		npm_execpath: string;
-		PAGER: string;
 		PATH: string;
 		GSETTINGS_SCHEMA_DIR: string;
 		npm_package_json: string;
@@ -199,7 +194,6 @@ declare module '$env/dynamic/private' {
 		npm_config_user_agent: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
 		GIT_ASKPASS: string;
-		PROMPT_EOL_MARK: string;
 		INFOPATH: string;
 		HOMEBREW_CELLAR: string;
 		SECURITYSESSIONID: string;
