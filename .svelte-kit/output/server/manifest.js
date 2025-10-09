@@ -6,11 +6,11 @@ function __memo(fn) {
 
 return {
 	appDir: "_app",
-	appPath: "_app",
+	appPath: "data-viz-portfolio/_app",
 	assets: new Set([".DS_Store",".nojekyll","download/cv_LeiChen.pdf","favicon.svg","favicon_2.svg","logo-black.svg","logo-white.svg","projects/.DS_Store","projects/thumbnail-afg-returns.gif","projects/thumbnail-assessment-eth.jpg","projects/thumbnail-centralMed.gif","projects/thumbnail-climate-report.jpg","projects/thumbnail-climate.jpg","projects/thumbnail-core-afg.jpg","projects/thumbnail-core-bdi.jpg","projects/thumbnail-core-ssd.jpg","projects/thumbnail-core-uga.jpg","projects/thumbnail-covid.jpg","projects/thumbnail-darien-gap.jpg","projects/thumbnail-dataviz-guidelines.jpg","projects/thumbnail-education.jpg","projects/thumbnail-globe.jpg","projects/thumbnail-gt-2017.jpg","projects/thumbnail-haiti.jpg","projects/thumbnail-idp-number.gif","projects/thumbnail-mapping-guidelines.jpg","projects/thumbnail-needs-eth.jpg","projects/thumbnail-oos-story.jpg","projects/thumbnail-shelter-eth.jpg","projects/thumbnail-ssd-one-twopager.jpg","projects/thumbnail-sudan-one.gif","projects/thumbnail-sudan-six-months.gif","projects/thumbnail-sudan-two.jpg","projects/thumbnail-sudan-two_.jpg","projects/thumbnail-wash-eth.jpg"]),
 	mimeTypes: {".pdf":"application/pdf",".svg":"image/svg+xml",".gif":"image/gif",".jpg":"image/jpeg"},
 	_: {
-		client: {start:"_app/immutable/entry/start.C6RoMH0-.js",app:"_app/immutable/entry/app.BQ8DoUDV.js",imports:["_app/immutable/entry/start.C6RoMH0-.js","_app/immutable/chunks/BCETjq_8.js","_app/immutable/chunks/DcQgNQ94.js","_app/immutable/chunks/DbIKQ5rA.js","_app/immutable/entry/app.BQ8DoUDV.js","_app/immutable/chunks/DbIKQ5rA.js","_app/immutable/chunks/DcQgNQ94.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/MmvClPj9.js","_app/immutable/chunks/DMGidFO7.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.F51sOolK.js",app:"_app/immutable/entry/app.B5eG2QIJ.js",imports:["_app/immutable/entry/start.F51sOolK.js","_app/immutable/chunks/Bqy8xVcy.js","_app/immutable/chunks/DcQgNQ94.js","_app/immutable/chunks/DbIKQ5rA.js","_app/immutable/entry/app.B5eG2QIJ.js","_app/immutable/chunks/DbIKQ5rA.js","_app/immutable/chunks/DcQgNQ94.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/MmvClPj9.js","_app/immutable/chunks/DMGidFO7.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
