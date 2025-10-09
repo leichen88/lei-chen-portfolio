@@ -14,7 +14,7 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/data-viz-portfolio' : ''
+			base: process.env.NODE_ENV === 'production' ? '' : ''
 		},
 		alias: {
 			$lib: './src/lib'
