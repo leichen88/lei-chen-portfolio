@@ -4,12 +4,8 @@
 	import { onMount } from 'svelte';
 
 	let time = $state(0);
-	let scaleFactor = $state(1);
-	let positionFactor = $state(1);
 	
 	onMount(() => {
-		console.log('ThreeBackground mounted');
-		
 		const animate = () => {
 			time += 0.005;
 			requestAnimationFrame(animate);
@@ -97,20 +93,20 @@
 			</T.Mesh>
 		{/each}
 
-		<!-- Extremely dense bubble field with many more particles - slowed movement -->
-		{#each Array(200) as _, i}
+		<!-- Optimized bubble field with reduced particles for better performance -->
+		{#each Array(80) as _, i}
 			<T.Mesh
 				position={[
-					20 * positionFactor + Math.sin(time * (0.03 + i * 0.008) + i * 0.15) * (12 + i % 8) * positionFactor,
-					Math.cos(time * (0.05 + i * 0.012) + i * 0.22) * (9 + i % 5) * positionFactor,
-					Math.sin(time * (0.025 + i * 0.015) + i * 0.1) * (10 + i % 9) * positionFactor
+					20 + Math.sin(time * (0.03 + i * 0.008) + i * 0.15) * (12 + i % 8),
+					Math.cos(time * (0.05 + i * 0.012) + i * 0.22) * (9 + i % 5),
+					Math.sin(time * (0.025 + i * 0.015) + i * 0.1) * (10 + i % 9)
 				]}
 				rotation={[time * 0.02 + i * 0.1, time * 0.04 + i * 0.15, time * 0.01 + i * 0.05]}
-				scale={(0.1 + Math.sin(time * 1.2 + i * 0.3) * 0.06) * scaleFactor}
+				scale={0.1 + Math.sin(time * 1.2 + i * 0.3) * 0.06}
 			>
-				<T.SphereGeometry args={[0.05 + (i % 6) * 0.025, 8, 8]}></T.SphereGeometry>
+				<T.SphereGeometry args={[0.05 + (i % 6) * 0.025, 6, 6]}></T.SphereGeometry>
 				<T.MeshBasicMaterial
-					color={i % 12 === 0 ? '#ef4444' : i % 12 === 1 ? '#3b82f6' : i % 12 === 2 ? '#10b981' : i % 12 === 3 ? '#f59e0b' : i % 12 === 4 ? '#8b5cf6' : i % 12 === 5 ? '#ec4899' : i % 12 === 6 ? '#06b6d4' : i % 12 === 7 ? '#84cc16' : i % 12 === 8 ? '#f97316' : i % 12 === 9 ? '#a855f7' : i % 12 === 10 ? '#22d3ee' : '#facc15'}
+					color={i % 6 === 0 ? '#ef4444' : i % 6 === 1 ? '#3b82f6' : i % 6 === 2 ? '#10b981' : i % 6 === 3 ? '#f59e0b' : i % 6 === 4 ? '#8b5cf6' : '#ec4899'}
 					transparent={true}
 					opacity={0.35 + Math.sin(time * 0.9 + i * 0.2) * 0.2}
 				></T.MeshBasicMaterial>

@@ -1,4 +1,1 @@
-const DEV = false;
-export {
-  DEV as D
-};
+const s=!1;export{s as D};

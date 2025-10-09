@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { base } from '$app/paths';
 
 	let projects = [
 		{
@@ -10,7 +9,6 @@
 			technologies: ['D3.js', 'Svelte', 'Mapbox', 'Datawrapper'],
 			image: 'projects/thumbnail-sudan-two_.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2025/04/sudan-crisis-deepens-but-attention-wanes-after-two-years-of-war/',
-			githubUrl: '#',
 			category: ['Data story']
 		},
 		{
@@ -20,7 +18,6 @@
 			technologies: ['D3.js', 'Svelte', 'Datawrapper'],
 			image: 'projects/thumbnail-education.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2025/04/the-learning-divide/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -30,7 +27,6 @@
 			technologies: ['D3.js', 'Mapbox'],
 			image: 'projects/thumbnail-climate.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/11/no-escape/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		
@@ -41,7 +37,6 @@
 			technologies: ['D3.js', 'Mapbox', 'Datawrapper'],
 			image: 'projects/thumbnail-haiti.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/10/haiti-a-multi-dimensional-crisis-leading-to-continued-displacement/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -51,7 +46,6 @@
 			technologies: ['D3.js', 'Datawrapper'],
 			image: 'projects/thumbnail-covid.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/04/seeking-asylum-during-covid-19-and-what-it-means-today/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -61,7 +55,6 @@
 			technologies: ['D3.js', 'Illustrator', 'Mapbox', 'QGIS'],
 			image: 'projects/thumbnail-sudan-one.gif',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/04/sudan-one-year-of-spiralling-conflict-and-displacement/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -71,7 +64,6 @@
 			technologies: ['D3.js', 'Svelte', ' ThreeJS', 'WebGL'],
 			image: 'projects/thumbnail-globe.jpg',
 			liveUrl: 'https://leichen88.github.io/globe-data-viz/',
-			githubUrl: '#',
 			category: ['Dashboard']
 		},
 		{
@@ -81,17 +73,15 @@
 			technologies: ['D3.js', 'ai2html', 'Arcgis', 'QGIS', 'Flourish'],
 			image: 'projects/thumbnail-sudan-six-months.gif',
 			liveUrl: 'https://storymaps.arcgis.com/stories/e02f1a1878ad4bed9ccdb6eab429da75',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
 			id: 9,
 			title: 'Death in the Desert',
-			description: 'Data story on the dangers facing refugees and migrants en route to Africa’s Mediterranean coast.',
+			description: 'Data story on the dangers facing refugees and migrants en route to Africa\'s Mediterranean coast.',
 			technologies: ['Arcgis', 'QGIS', 'D3.js', 'Datawrapper'],
 			image: 'projects/thumbnail-centralMed.gif',
 			liveUrl: 'https://storymaps.arcgis.com/stories/da9df715ef4d40b1bbe257b13bee4ae4',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -101,7 +91,6 @@
 			technologies: ['Illustrator', 'InDesign'],
 			image: 'projects/thumbnail-dataviz-guidelines.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/guidance/',
-			githubUrl: '#',
 			category: 'Style Guide'
 		},
 		{
@@ -111,7 +100,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-climate-report.jpg',
 			liveUrl: 'https://www.unhcr.org/media/no-escape-frontlines-climate-change-conflict-and-forced-displacement',
-			githubUrl: '#',
 			category: 'Infographic'
 		},
 		{
@@ -121,7 +109,6 @@
 			technologies: ['D3.js', 'Datawrapper', 'Mapbox'],
 			image: 'projects/thumbnail-afg-returns.gif',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/05/returns-to-afghanistan/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -131,7 +118,6 @@
 			technologies: ['D3.js', 'Datawrapper'],
 			image: 'projects/thumbnail-idp-number.gif',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2024/07/protecting-people-displaced-in-their-own-country-through-law-and-policy/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -141,17 +127,15 @@
 			technologies: ['D3.js', 'Angular', 'Java', 'MySQL'],
 			image: 'projects/thumbnail-oos-story.jpg',
 			liveUrl: 'https://storymaps.arcgis.com/stories/8ca0005f48fc4f29b4dfd519824def54',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
 			id: 15,
 			title: 'Mapping Guidelines',
-			description: 'Guidelines ensuring clarity, consistency, and impact in UNHCR’s mapping products.',
+			description: 'Guidelines ensuring clarity, consistency, and impact in UNHCR\'s mapping products.',
 			technologies: ['QGIS', 'Illustrator', 'InDesign'],
 			image: 'projects/thumbnail-mapping-guidelines.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/download/UNHCR_Mapping_Guidelines_2024.pdf',
-			githubUrl: '#',
 			category: 'Style Guide'
 		},
 		{
@@ -161,7 +145,6 @@
 			technologies: ['D3.js', 'ai2html', 'datawrapper'],
 			image: 'projects/thumbnail-darien-gap.jpg',
 			liveUrl: 'https://dataviz.unhcr.org/product-gallery/2023/07/monitoring-movements-through-the-darien-jungle-in-panama/',
-			githubUrl: '#',
 			category: 'Data story'
 		},
 		{
@@ -171,7 +154,6 @@
 			technologies: ['Arcgis', 'Illustrator'],
 			image: 'projects/thumbnail-gt-2017.jpg',
 			liveUrl: 'https://www.unhcr.org/media/unhcr-global-trends-2017',
-			githubUrl: '#',
 			category: 'Infographic'
 		},
 		{
@@ -181,7 +163,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-core-ssd.jpg',
 			liveUrl: 'https://data.unhcr.org/en/documents/details/100795',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -191,7 +172,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-core-uga.jpg',
 			liveUrl: 'https://data.unhcr.org/en/documents/details/112285',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -201,7 +181,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-core-bdi.jpg',
 			liveUrl: 'https://data.unhcr.org/en/documents/details/116060',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -211,7 +190,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-core-afg.jpg',
 			liveUrl: 'https://data.unhcr.org/en/documents/details/104656',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -221,7 +199,6 @@
 			technologies: ['Illustrator', 'QGIS'],
 			image: 'projects/thumbnail-ssd-one-twopager.jpg',
 			liveUrl: 'https://data.unhcr.org/en/documents/details/107844',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -231,7 +208,6 @@
 			technologies: ['QGIS', 'Illustrator'],
 			image: 'projects/thumbnail-assessment-eth.jpg',
 			liveUrl: '#',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -241,7 +217,6 @@
 			technologies: ['QGIS', 'Illustrator'],
 			image: 'projects/thumbnail-wash-eth.jpg',
 			liveUrl: '#',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -251,7 +226,6 @@
 			technologies: ['QGIS', 'Illustrator'],
 			image: 'projects/thumbnail-shelter-eth.jpg',
 			liveUrl: '#',
-			githubUrl: '#',
 			category: 'Dashboard'
 		},
 		{
@@ -261,9 +235,8 @@
 			technologies: ['QGIS', 'Illustrator'],
 			image: 'projects/thumbnail-needs-eth.jpg',
 			liveUrl: '#',
-			githubUrl: '#',
 			category: 'Dashboard'
-		}	
+		}
 	];
 
 	let selectedCategory = $state('all');
@@ -362,7 +335,7 @@
 						<div class="relative pt-[75%]"> <!-- 4:3 ratio -->
 							{#if project.image && project.image !== '/api/placeholder/400/250'}
 								<img
-									src={base ? `${base}/${project.image}` : project.image}
+									src={project.image}
 									alt={project.title}
 									class="absolute top-0 left-0 w-full h-full object-cover"
 								/>
@@ -399,16 +372,15 @@
 		<!-- Load More Link - Moved to end of section -->
 		{#if showLoadMore}
 			<div class="pt-10">
-				<a
-					href="#"
-					onclick={(e) => { e.preventDefault(); loadMore(); }}
+				<button
+					onclick={loadMore}
 					class="inline-flex items-center text-primary-400 hover:text-primary-300 font-light transition-colors duration-200"
 				>
 					<span>Load More Projects</span>
 					<svg class="w-5 h-5 ml-2 animate-arrow-right" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
 					</svg>
-				</a>
+				</button>
 			</div>
 		{/if}
 	</div>

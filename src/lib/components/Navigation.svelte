@@ -1,9 +1,21 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 	
 	let activeSection = $state('');
+	let currentPathname = $state(browser ? window.location.pathname : '');
+	
+	// Update current pathname when navigation occurs
+	function updatePathname() {
+		if (browser) {
+			currentPathname = window.location.pathname;
+		}
+	}
+	
+	// Listen for navigation events only in browser
+	if (browser) {
+		window.addEventListener('popstate', updatePathname);
+	}
 
 	const navItems = [
 		{ name: 'Home', href: '/', type: 'page' },
@@ -22,19 +34,16 @@
 		if (type === 'page') {
 			// Handle page navigation
 			await goto(href);
+			// Update current pathname after navigation
+			if (browser) {
+				currentPathname = window.location.pathname;
+			}
 		} else if (type === 'section') {
 			// Handle section navigation (scroll to section)
-			if ($page.url.pathname !== '/') {
-				// If not on home page, navigate to home page first
-				await goto('/');
-				// Wait a bit for the page to load then scroll
-				setTimeout(() => {
-					const target = document.querySelector(href);
-					if (target) {
-						target.scrollIntoView({ behavior: 'smooth' });
-						activeSection = href.slice(1); // Set active section
-					}
-				}, 100);
+			if (currentPathname !== '/') {
+				// If not on home page, navigate to home page first with hash
+				await goto(`/${href}`);
+				// The hash navigation will be handled by the browser
 			} else {
 				// Already on home page, just scroll
 				const target = document.querySelector(href);
@@ -47,7 +56,7 @@
 	}
 
 	function updateActiveSection() {
-		if ($page.url.pathname !== '/') return;
+		if (currentPathname !== '/') return;
 		
 		const sections = ['projects', 'contact'];
 		const scrollPosition = window.scrollY + 100; // Offset for fixed nav
@@ -76,9 +85,9 @@
 		if (type === 'page') {
 			if (href === '/') {
 				// Home is active when on home page and no section is active
-				return $page.url.pathname === '/' && activeSection === '';
+				return currentPathname === '/' && activeSection === '';
 			}
-			return $page.url.pathname === href;
+			return currentPathname === href;
 		} else if (type === 'section') {
 			return activeSection === href.slice(1);
 		}
@@ -125,7 +134,7 @@
 					onclick={(e) => { e.preventDefault(); handleNavigation('/', 'page'); }}
 					class="flex items-center text-gray-200 hover:text-primary-400 transition-colors duration-200"
 				>
-					<img src={base ? `${base}/logo-white.svg` : 'logo-white.svg'} alt="Logo" class="logo-svg" />
+					<img src="logo-white.svg" alt="Logo" class="logo-svg" />
 				</a>
 			</div>
 

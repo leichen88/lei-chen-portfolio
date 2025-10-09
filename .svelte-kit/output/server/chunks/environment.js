@@ -1,11 +1,1 @@
-let prerendering = false;
-function set_building() {
-}
-function set_prerendering() {
-  prerendering = true;
-}
-export {
-  set_prerendering as a,
-  prerendering as p,
-  set_building as s
-};
+let e="",a=e;const i="_app",t={base:e,assets:a};function r(s){e=s.base,a=s.assets}function o(){e=t.base,a=t.assets}function c(s){a=t.assets=s}let n=!1;function p(){}function u(){n=!0}export{a,e as b,i as c,p as d,u as e,r as o,n as p,o as r,c as s};

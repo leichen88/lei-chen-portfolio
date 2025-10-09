@@ -1,9 +1,1 @@
-import { D as slot } from "../../chunks/index2.js";
-function _layout($$payload, $$props) {
-  $$payload.out.push(`<!---->`);
-  slot($$payload, $$props, "default", {});
-  $$payload.out.push(`<!---->`);
-}
-export {
-  _layout as default
-};
+import{d as o}from"../../chunks/index2.js";function f(t,u){t.out.push("<!---->"),o(t,u,"default",{}),t.out.push("<!---->")}export{f as default};

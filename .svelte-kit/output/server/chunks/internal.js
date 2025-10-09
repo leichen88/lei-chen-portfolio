@@ -1,472 +1,53 @@
-import { H as HYDRATION_ERROR, g as get_next_sibling, d as define_property, s as set_active_reaction, a as set_active_effect, i as is_array, b as active_effect, c as active_reaction, e as init_operations, f as get_first_child, C as COMMENT_NODE, h as HYDRATION_START, j as HYDRATION_END, k as hydration_failed, l as clear_text_content, m as array_from, n as component_root, o as create_text, p as branch, q as push, r as component_context, t as pop, u as set, L as LEGACY_PROPS, v as get, w as flushSync, x as mutable_source, y as render, z as push$1, A as setContext, B as pop$1 } from "./index2.js";
-import "clsx";
-import "./environment.js";
-import "./paths.js";
-let public_env = {};
-function set_private_env(environment) {
-}
-function set_public_env(environment) {
-  public_env = environment;
-}
-function hydration_mismatch(location) {
-  {
-    console.warn(`https://svelte.dev/e/hydration_mismatch`);
-  }
-}
-let hydrating = false;
-function set_hydrating(value) {
-  hydrating = value;
-}
-let hydrate_node;
-function set_hydrate_node(node) {
-  if (node === null) {
-    hydration_mismatch();
-    throw HYDRATION_ERROR;
-  }
-  return hydrate_node = node;
-}
-function hydrate_next() {
-  return set_hydrate_node(
-    /** @type {TemplateNode} */
-    get_next_sibling(hydrate_node)
-  );
-}
-const PASSIVE_EVENTS = ["touchstart", "touchmove"];
-function is_passive_event(name) {
-  return PASSIVE_EVENTS.includes(name);
-}
-const all_registered_events = /* @__PURE__ */ new Set();
-const root_event_handles = /* @__PURE__ */ new Set();
-let last_propagated_event = null;
-function handle_event_propagation(event) {
-  var handler_element = this;
-  var owner_document = (
-    /** @type {Node} */
-    handler_element.ownerDocument
-  );
-  var event_name = event.type;
-  var path = event.composedPath?.() || [];
-  var current_target = (
-    /** @type {null | Element} */
-    path[0] || event.target
-  );
-  last_propagated_event = event;
-  var path_idx = 0;
-  var handled_at = last_propagated_event === event && event.__root;
-  if (handled_at) {
-    var at_idx = path.indexOf(handled_at);
-    if (at_idx !== -1 && (handler_element === document || handler_element === /** @type {any} */
-    window)) {
-      event.__root = handler_element;
-      return;
-    }
-    var handler_idx = path.indexOf(handler_element);
-    if (handler_idx === -1) {
-      return;
-    }
-    if (at_idx <= handler_idx) {
-      path_idx = at_idx;
-    }
-  }
-  current_target = /** @type {Element} */
-  path[path_idx] || event.target;
-  if (current_target === handler_element) return;
-  define_property(event, "currentTarget", {
-    configurable: true,
-    get() {
-      return current_target || owner_document;
-    }
-  });
-  var previous_reaction = active_reaction;
-  var previous_effect = active_effect;
-  set_active_reaction(null);
-  set_active_effect(null);
-  try {
-    var throw_error;
-    var other_errors = [];
-    while (current_target !== null) {
-      var parent_element = current_target.assignedSlot || current_target.parentNode || /** @type {any} */
-      current_target.host || null;
-      try {
-        var delegated = current_target["__" + event_name];
-        if (delegated != null && (!/** @type {any} */
-        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
-        // -> the target could not have been disabled because it emits the event in the first place
-        event.target === current_target)) {
-          if (is_array(delegated)) {
-            var [fn, ...data] = delegated;
-            fn.apply(current_target, [event, ...data]);
-          } else {
-            delegated.call(current_target, event);
-          }
-        }
-      } catch (error) {
-        if (throw_error) {
-          other_errors.push(error);
-        } else {
-          throw_error = error;
-        }
-      }
-      if (event.cancelBubble || parent_element === handler_element || parent_element === null) {
-        break;
-      }
-      current_target = parent_element;
-    }
-    if (throw_error) {
-      for (let error of other_errors) {
-        queueMicrotask(() => {
-          throw error;
-        });
-      }
-      throw throw_error;
-    }
-  } finally {
-    event.__root = handler_element;
-    delete event.currentTarget;
-    set_active_reaction(previous_reaction);
-    set_active_effect(previous_effect);
-  }
-}
-function assign_nodes(start, end) {
-  var effect = (
-    /** @type {Effect} */
-    active_effect
-  );
-  if (effect.nodes_start === null) {
-    effect.nodes_start = start;
-    effect.nodes_end = end;
-  }
-}
-function mount(component, options2) {
-  return _mount(component, options2);
-}
-function hydrate(component, options2) {
-  init_operations();
-  options2.intro = options2.intro ?? false;
-  const target = options2.target;
-  const was_hydrating = hydrating;
-  const previous_hydrate_node = hydrate_node;
-  try {
-    var anchor = (
-      /** @type {TemplateNode} */
-      get_first_child(target)
-    );
-    while (anchor && (anchor.nodeType !== COMMENT_NODE || /** @type {Comment} */
-    anchor.data !== HYDRATION_START)) {
-      anchor = /** @type {TemplateNode} */
-      get_next_sibling(anchor);
-    }
-    if (!anchor) {
-      throw HYDRATION_ERROR;
-    }
-    set_hydrating(true);
-    set_hydrate_node(
-      /** @type {Comment} */
-      anchor
-    );
-    hydrate_next();
-    const instance = _mount(component, { ...options2, anchor });
-    if (hydrate_node === null || hydrate_node.nodeType !== COMMENT_NODE || /** @type {Comment} */
-    hydrate_node.data !== HYDRATION_END) {
-      hydration_mismatch();
-      throw HYDRATION_ERROR;
-    }
-    set_hydrating(false);
-    return (
-      /**  @type {Exports} */
-      instance
-    );
-  } catch (error) {
-    if (error instanceof Error && error.message.split("\n").some((line) => line.startsWith("https://svelte.dev/e/"))) {
-      throw error;
-    }
-    if (error !== HYDRATION_ERROR) {
-      console.warn("Failed to hydrate: ", error);
-    }
-    if (options2.recover === false) {
-      hydration_failed();
-    }
-    init_operations();
-    clear_text_content(target);
-    set_hydrating(false);
-    return mount(component, options2);
-  } finally {
-    set_hydrating(was_hydrating);
-    set_hydrate_node(previous_hydrate_node);
-  }
-}
-const document_listeners = /* @__PURE__ */ new Map();
-function _mount(Component, { target, anchor, props = {}, events, context, intro = true }) {
-  init_operations();
-  var registered_events = /* @__PURE__ */ new Set();
-  var event_handle = (events2) => {
-    for (var i = 0; i < events2.length; i++) {
-      var event_name = events2[i];
-      if (registered_events.has(event_name)) continue;
-      registered_events.add(event_name);
-      var passive = is_passive_event(event_name);
-      target.addEventListener(event_name, handle_event_propagation, { passive });
-      var n = document_listeners.get(event_name);
-      if (n === void 0) {
-        document.addEventListener(event_name, handle_event_propagation, { passive });
-        document_listeners.set(event_name, 1);
-      } else {
-        document_listeners.set(event_name, n + 1);
-      }
-    }
-  };
-  event_handle(array_from(all_registered_events));
-  root_event_handles.add(event_handle);
-  var component = void 0;
-  var unmount2 = component_root(() => {
-    var anchor_node = anchor ?? target.appendChild(create_text());
-    branch(() => {
-      if (context) {
-        push({});
-        var ctx = (
-          /** @type {ComponentContext} */
-          component_context
-        );
-        ctx.c = context;
-      }
-      if (events) {
-        props.$$events = events;
-      }
-      if (hydrating) {
-        assign_nodes(
-          /** @type {TemplateNode} */
-          anchor_node,
-          null
-        );
-      }
-      component = Component(anchor_node, props) || {};
-      if (hydrating) {
-        active_effect.nodes_end = hydrate_node;
-      }
-      if (context) {
-        pop();
-      }
-    });
-    return () => {
-      for (var event_name of registered_events) {
-        target.removeEventListener(event_name, handle_event_propagation);
-        var n = (
-          /** @type {number} */
-          document_listeners.get(event_name)
-        );
-        if (--n === 0) {
-          document.removeEventListener(event_name, handle_event_propagation);
-          document_listeners.delete(event_name);
-        } else {
-          document_listeners.set(event_name, n);
-        }
-      }
-      root_event_handles.delete(event_handle);
-      if (anchor_node !== anchor) {
-        anchor_node.parentNode?.removeChild(anchor_node);
-      }
-    };
-  });
-  mounted_components.set(component, unmount2);
-  return component;
-}
-let mounted_components = /* @__PURE__ */ new WeakMap();
-function unmount(component, options2) {
-  const fn = mounted_components.get(component);
-  if (fn) {
-    mounted_components.delete(component);
-    return fn(options2);
-  }
-  return Promise.resolve();
-}
-function asClassComponent$1(component) {
-  return class extends Svelte4Component {
-    /** @param {any} options */
-    constructor(options2) {
-      super({
-        component,
-        ...options2
-      });
-    }
-  };
-}
-class Svelte4Component {
-  /** @type {any} */
-  #events;
-  /** @type {Record<string, any>} */
-  #instance;
-  /**
-   * @param {ComponentConstructorOptions & {
-   *  component: any;
-   * }} options
-   */
-  constructor(options2) {
-    var sources = /* @__PURE__ */ new Map();
-    var add_source = (key, value) => {
-      var s = mutable_source(value, false, false);
-      sources.set(key, s);
-      return s;
-    };
-    const props = new Proxy(
-      { ...options2.props || {}, $$events: {} },
-      {
-        get(target, prop) {
-          return get(sources.get(prop) ?? add_source(prop, Reflect.get(target, prop)));
-        },
-        has(target, prop) {
-          if (prop === LEGACY_PROPS) return true;
-          get(sources.get(prop) ?? add_source(prop, Reflect.get(target, prop)));
-          return Reflect.has(target, prop);
-        },
-        set(target, prop, value) {
-          set(sources.get(prop) ?? add_source(prop, value), value);
-          return Reflect.set(target, prop, value);
-        }
-      }
-    );
-    this.#instance = (options2.hydrate ? hydrate : mount)(options2.component, {
-      target: options2.target,
-      anchor: options2.anchor,
-      props,
-      context: options2.context,
-      intro: options2.intro ?? false,
-      recover: options2.recover
-    });
-    if (!options2?.props?.$$host || options2.sync === false) {
-      flushSync();
-    }
-    this.#events = props.$$events;
-    for (const key of Object.keys(this.#instance)) {
-      if (key === "$set" || key === "$destroy" || key === "$on") continue;
-      define_property(this, key, {
-        get() {
-          return this.#instance[key];
-        },
-        /** @param {any} value */
-        set(value) {
-          this.#instance[key] = value;
-        },
-        enumerable: true
-      });
-    }
-    this.#instance.$set = /** @param {Record<string, any>} next */
-    (next) => {
-      Object.assign(props, next);
-    };
-    this.#instance.$destroy = () => {
-      unmount(this.#instance);
-    };
-  }
-  /** @param {Record<string, any>} props */
-  $set(props) {
-    this.#instance.$set(props);
-  }
-  /**
-   * @param {string} event
-   * @param {(...args: any[]) => any} callback
-   * @returns {any}
-   */
-  $on(event, callback) {
-    this.#events[event] = this.#events[event] || [];
-    const cb = (...args) => callback.call(this, ...args);
-    this.#events[event].push(cb);
-    return () => {
-      this.#events[event] = this.#events[event].filter(
-        /** @param {any} fn */
-        (fn) => fn !== cb
-      );
-    };
-  }
-  $destroy() {
-    this.#instance.$destroy();
-  }
-}
-let read_implementation = null;
-function set_read_implementation(fn) {
-  read_implementation = fn;
-}
-function set_manifest(_) {
-}
-function asClassComponent(component) {
-  const component_constructor = asClassComponent$1(component);
-  const _render = (props, { context } = {}) => {
-    const result = render(component, { props, context });
-    return {
-      css: { code: "", map: null },
-      head: result.head,
-      html: result.body
-    };
-  };
-  component_constructor.render = _render;
-  return component_constructor;
-}
-function Root($$payload, $$props) {
-  push$1();
-  let {
-    stores,
-    page,
-    constructors,
-    components = [],
-    form,
-    data_0 = null,
-    data_1 = null
-  } = $$props;
-  {
-    setContext("__svelte__", stores);
-  }
-  {
-    stores.page.set(page);
-  }
-  const Pyramid_1 = constructors[1];
-  if (constructors[1]) {
-    $$payload.out.push("<!--[-->");
-    const Pyramid_0 = constructors[0];
-    $$payload.out.push(`<!---->`);
-    Pyramid_0($$payload, {
-      data: data_0,
-      form,
-      params: page.params,
-      children: ($$payload2) => {
-        $$payload2.out.push(`<!---->`);
-        Pyramid_1($$payload2, { data: data_1, form, params: page.params });
-        $$payload2.out.push(`<!---->`);
-      },
-      $$slots: { default: true }
-    });
-    $$payload.out.push(`<!---->`);
-  } else {
-    $$payload.out.push("<!--[!-->");
-    const Pyramid_0 = constructors[0];
-    $$payload.out.push(`<!---->`);
-    Pyramid_0($$payload, { data: data_0, form, params: page.params });
-    $$payload.out.push(`<!---->`);
-  }
-  $$payload.out.push(`<!--]--> `);
-  {
-    $$payload.out.push("<!--[!-->");
-  }
-  $$payload.out.push(`<!--]-->`);
-  pop$1();
-}
-const root = asClassComponent(Root);
-const options = {
-  app_template_contains_nonce: false,
-  csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
-  csrf_check_origin: true,
-  csrf_trusted_origins: [],
-  embedded: false,
-  env_public_prefix: "PUBLIC_",
-  env_private_prefix: "",
-  hash_routing: false,
-  hooks: null,
-  // added lazily, via `get_hooks`
-  preload_strategy: "modulepreload",
-  root,
-  service_worker: false,
-  service_worker_options: void 0,
-  templates: {
-    app: ({ head, body, assets, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" class="dark">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="favicon_2.svg" />\n		<meta name="viewport" content="width=device-width" />\n		\n		<!-- Primary Meta Tags -->\n		<title>Lei Chen - Data Visualization Specialist</title>\n		<meta name="title" content="Lei Chen - Data Visualization Specialist">\n		<meta name="description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">\n		<meta name="keywords" content="data visualization, humanitarian, UNHCR, IOM, data stories, dashboards, infographics, D3.js, Svelte, mapping, GIS">\n		<meta name="author" content="Lei Chen">\n				\n		<!-- Theme Color -->\n		<meta name="theme-color" content="#0f172a">\n		<meta name="msapplication-TileColor" content="#0f172a">\n		\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
-    error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
+import{H as w,C as R,a as j,b as A,L as Y,r as F,p as q,s as B,c as G}from"./index2.js";import{g as M,s as E,a as D,b as S,c as W,i as k,d as J,h as K,e as Q,f as X,j as Z,k as $,p as tt,l as et,m as nt,n as at,o as T,q as rt,r as st}from"./runtime.js";import{d as P,i as it,a as ot}from"./utils2.js";import"clsx";import"./environment.js";let lt={};function Rt(t){}function Et(t){lt=t}function I(t){console.warn("https://svelte.dev/e/hydration_mismatch")}let C=!1;function y(t){C=t}let p;function x(t){if(t===null)throw I(),w;return p=t}function ct(){return x(M(p))}const ut=["touchstart","touchmove"];function dt(t){return ut.includes(t)}const ht=new Set,N=new Set;let z=null;function b(t){var e=this,r=e.ownerDocument,i=t.type,s=t.composedPath?.()||[],n=s[0]||t.target;z=t;var a=0,o=z===t&&t.__root;if(o){var d=s.indexOf(o);if(d!==-1&&(e===document||e===window)){t.__root=e;return}var h=s.indexOf(e);if(h===-1)return;d<=h&&(a=d)}if(n=s[a]||t.target,n!==e){P(t,"currentTarget",{configurable:!0,get(){return n||r}});var f=W,c=S;E(null),D(null);try{for(var l,u=[];n!==null;){var g=n.assignedSlot||n.parentNode||n.host||null;try{var m=n["__"+i];if(m!=null&&(!n.disabled||t.target===n))if(it(m)){var[U,...V]=m;U.apply(n,[t,...V])}else m.call(n,t)}catch(v){l?u.push(v):l=v}if(t.cancelBubble||g===e||g===null)break;n=g}if(l){for(let v of u)queueMicrotask(()=>{throw v});throw l}}finally{t.__root=e,delete t.currentTarget,E(f),D(c)}}}function ft(t,e){var r=S;r.nodes_start===null&&(r.nodes_start=t,r.nodes_end=e)}function L(t,e){return H(t,e)}function mt(t,e){k(),e.intro=e.intro??!1;const r=e.target,i=C,s=p;try{for(var n=J(r);n&&(n.nodeType!==R||n.data!==j);)n=M(n);if(!n)throw w;y(!0),x(n),ct();const a=H(t,{...e,anchor:n});if(p===null||p.nodeType!==R||p.data!==A)throw I(),w;return y(!1),a}catch(a){if(a instanceof Error&&a.message.split(`
+`).some(o=>o.startsWith("https://svelte.dev/e/")))throw a;return a!==w&&console.warn("Failed to hydrate: ",a),e.recover===!1&&K(),k(),Q(r),y(!1),L(t,e)}finally{y(i),x(s)}}const _=new Map;function H(t,{target:e,anchor:r,props:i={},events:s,context:n,intro:a=!0}){k();var o=new Set,d=c=>{for(var l=0;l<c.length;l++){var u=c[l];if(!o.has(u)){o.add(u);var g=dt(u);e.addEventListener(u,b,{passive:g});var m=_.get(u);m===void 0?(document.addEventListener(u,b,{passive:g}),_.set(u,1)):_.set(u,m+1)}}};d(ot(ht)),N.add(d);var h=void 0,f=X(()=>{var c=r??e.appendChild(Z());return $(()=>{if(n){tt({});var l=et;l.c=n}s&&(i.$$events=s),C&&ft(c,null),h=t(c,i)||{},C&&(S.nodes_end=p),n&&nt()}),()=>{for(var l of o){e.removeEventListener(l,b);var u=_.get(l);--u===0?(document.removeEventListener(l,b),_.delete(l)):_.set(l,u)}N.delete(d),c!==r&&c.parentNode?.removeChild(c)}});return O.set(h,f),h}let O=new WeakMap;function pt(t,e){const r=O.get(t);return r?(O.delete(t),r(e)):Promise.resolve()}function gt(t){return class extends _t{constructor(e){super({component:t,...e})}}}class _t{#e;#t;constructor(e){var r=new Map,i=(n,a)=>{var o=st(a,!1,!1);return r.set(n,o),o};const s=new Proxy({...e.props||{},$$events:{}},{get(n,a){return T(r.get(a)??i(a,Reflect.get(n,a)))},has(n,a){return a===Y?!0:(T(r.get(a)??i(a,Reflect.get(n,a))),Reflect.has(n,a))},set(n,a,o){return at(r.get(a)??i(a,o),o),Reflect.set(n,a,o)}});this.#t=(e.hydrate?mt:L)(e.component,{target:e.target,anchor:e.anchor,props:s,context:e.context,intro:e.intro??!1,recover:e.recover}),(!e?.props?.$$host||e.sync===!1)&&rt(),this.#e=s.$$events;for(const n of Object.keys(this.#t))n==="$set"||n==="$destroy"||n==="$on"||P(this,n,{get(){return this.#t[n]},set(a){this.#t[n]=a},enumerable:!0});this.#t.$set=n=>{Object.assign(s,n)},this.#t.$destroy=()=>{pt(this.#t)}}$set(e){this.#t.$set(e)}$on(e,r){this.#e[e]=this.#e[e]||[];const i=(...s)=>r.call(this,...s);return this.#e[e].push(i),()=>{this.#e[e]=this.#e[e].filter(s=>s!==i)}}$destroy(){this.#t.$destroy()}}let vt=null;function Dt(t){vt=t}function Tt(t){}function yt(t){const e=gt(t),r=(i,{context:s}={})=>{const n=F(t,{props:i,context:s});return{css:{code:"",map:null},head:n.head,html:n.body}};return e.render=r,e}function bt(t,e){q();let{stores:r,page:i,constructors:s,components:n=[],form:a,data_0:o=null,data_1:d=null}=e;B("__svelte__",r),r.page.set(i);const h=s[1];if(s[1]){t.out.push("<!--[-->");const f=s[0];t.out.push("<!---->"),f(t,{data:o,form:a,params:i.params,children:c=>{c.out.push("<!---->"),h(c,{data:d,form:a,params:i.params}),c.out.push("<!---->")},$$slots:{default:!0}}),t.out.push("<!---->")}else{t.out.push("<!--[!-->");const f=s[0];t.out.push("<!---->"),f(t,{data:o,form:a,params:i.params}),t.out.push("<!---->")}t.out.push("<!--]--> "),t.out.push("<!--[!-->"),t.out.push("<!--]-->"),G()}const wt=yt(bt),Nt={app_template_contains_nonce:!1,csp:{mode:"auto",directives:{"upgrade-insecure-requests":!1,"block-all-mixed-content":!1},reportOnly:{"upgrade-insecure-requests":!1,"block-all-mixed-content":!1}},csrf_check_origin:!0,csrf_trusted_origins:[],embedded:!1,env_public_prefix:"PUBLIC_",env_private_prefix:"",hash_routing:!1,hooks:null,preload_strategy:"modulepreload",root:wt,service_worker:!1,service_worker_options:void 0,templates:{app:({head:t,body:e,assets:r,nonce:i,env:s})=>`<!DOCTYPE html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="favicon_2.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Primary Meta Tags -->
+		<title>Lei Chen - Data Visualization Specialist | UNHCR, IOM, Humanitarian Data</title>
+		<meta name="title" content="Lei Chen - Data Visualization Specialist">
+		<meta name="description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">
+		<meta name="keywords" content="data visualization, humanitarian, UNHCR, IOM, data stories, dashboards, infographics, D3.js, Svelte, mapping, GIS">
+		<meta name="author" content="Lei Chen">
+		<meta name="robots" content="index, follow">
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://leichen.dev/">
+		<meta property="og:title" content="Lei Chen - Data Visualization Specialist">
+		<meta property="og:description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">
+		<meta property="og:image" content="/social-preview.jpg">
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="https://leichen.dev/">
+		<meta property="twitter:title" content="Lei Chen - Data Visualization Specialist">
+		<meta property="twitter:description" content="Data visualization specialist with 9+ years transforming complex datasets into clear, actionable visual stories for UNHCR, IOM, and global organizations.">
+		<meta property="twitter:image" content="/social-preview.jpg">
+				
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#0f172a">
+		<meta name="msapplication-TileColor" content="#0f172a">
+		
+		<!-- Preload critical resources -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		`+t+`
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div style="display: contents">`+e+`</div>
+	</body>
+</html>
+`,error:({status:t,message:e})=>`<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>`+e+`</title>
 
 		<style>
 			body {
@@ -535,35 +116,11 @@ const options = {
 	</head>
 	<body>
 		<div class="error">
-			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
-  },
-  version_hash: "x73cxe"
-};
-async function get_hooks() {
-  let handle;
-  let handleFetch;
-  let handleError;
-  let handleValidationError;
-  let init;
-  let reroute;
-  let transport;
-  return {
-    handle,
-    handleFetch,
-    handleError,
-    handleValidationError,
-    init,
-    reroute,
-    transport
-  };
-}
-export {
-  set_public_env as a,
-  set_read_implementation as b,
-  set_manifest as c,
-  get_hooks as g,
-  options as o,
-  public_env as p,
-  read_implementation as r,
-  set_private_env as s
-};
+			<span class="status">`+t+`</span>
+			<div class="message">
+				<h1>`+e+`</h1>
+			</div>
+		</div>
+	</body>
+</html>
+`},version_hash:"1u9thg4"};async function zt(){return{handle:void 0,handleFetch:void 0,handleError:void 0,handleValidationError:void 0,init:void 0,reroute:void 0,transport:void 0}}export{Et as a,Dt as b,Tt as c,zt as g,Nt as o,lt as p,vt as r,Rt as s};
