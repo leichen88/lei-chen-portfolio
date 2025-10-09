@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { base } from '$app/paths';
 	
 	let activeSection = $state('');
 	let currentPathname = $state(browser ? window.location.pathname : '');
@@ -20,8 +21,8 @@
 	}
 
 	const navItems = [
-		{ name: 'Home', href: '/', type: 'page' },
-		{ name: 'About', href: '/about', type: 'page' },
+		{ name: 'Home', href: base + '/', type: 'page' },
+		{ name: 'About', href: base + '/about', type: 'page' },
 		{ name: 'Projects', href: '#projects', type: 'section' },
 		{ name: 'Contact', href: '#contact', type: 'section' }
 	];
@@ -53,7 +54,7 @@
 			// Handle section navigation (scroll to section)
 			if (currentPathname !== '/') {
 				// If not on home page, navigate to home page first with hash
-				await goto(`/${href}`);
+				await goto(base + `/${href}`);
 				// The hash navigation will be handled by the browser
 			} else {
 				// Already on home page, just scroll
@@ -85,7 +86,7 @@
 	}
 
 	function updateActiveSection() {
-		if (currentPathname !== '/' || manualNavigationActive) return;
+		if (currentPathname !== base + '/' || manualNavigationActive) return;
 		
 		const sections = ['projects', 'contact'];
 		const scrollPosition = window.scrollY + 100; // Offset for fixed nav
@@ -129,9 +130,9 @@
 
 	function isActiveLink(href: string, type: string): boolean {
 		if (type === 'page') {
-			if (href === '/') {
+			if (href === base + '/') {
 				// Home is active when on home page and no section is active OR when at top
-				return currentPathname === '/' && (activeSection === '' || window.scrollY < 50);
+				return currentPathname === base + '/' && (activeSection === '' || window.scrollY < 50);
 			}
 			return currentPathname === href;
 		} else if (type === 'section') {
@@ -186,8 +187,8 @@
 			<!-- Logo -->
 			<div class="flex-shrink-0">
 				<a
-					href="/"
-					onclick={(e) => { e.preventDefault(); handleNavigation('/', 'page'); }}
+					href={base + "/"}
+					onclick={(e) => { e.preventDefault(); handleNavigation(base + '/', 'page'); }}
 					class="flex items-center text-gray-200 hover:text-primary-400 transition-colors duration-200"
 				>
 					<img src="logo-white.svg" alt="Logo" class="logo-svg" />

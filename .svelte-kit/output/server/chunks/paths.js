@@ -1,0 +1,1 @@
+let e="/lei-chen-portfolio",a=e;const o="_app",t={base:e,assets:a};function i(s){e=s.base,a=s.assets}function n(){e=t.base,a=t.assets}function c(s){a=t.assets=s}export{a,e as b,o as c,i as o,n as r,c as s};
