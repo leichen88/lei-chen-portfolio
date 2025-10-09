@@ -4,6 +4,8 @@
 	
 	let activeSection = $state('');
 	let currentPathname = $state(browser ? window.location.pathname : '');
+	let manualNavigationActive = $state(false);
+	let navigationTimeout: ReturnType<typeof setTimeout> | null = null;
 	
 	// Update current pathname when navigation occurs
 	function updatePathname() {
@@ -31,6 +33,12 @@
 	async function handleNavigation(href: string, type: string) {
 		isMenuOpen = false;
 		
+		// Clear any existing timeout
+		if (navigationTimeout) {
+			clearTimeout(navigationTimeout);
+			navigationTimeout = null;
+		}
+		
 		if (type === 'page') {
 			// Handle page navigation
 			await goto(href);
@@ -38,6 +46,9 @@
 			if (browser) {
 				currentPathname = window.location.pathname;
 			}
+			// Reset active section for page navigation
+			activeSection = '';
+			manualNavigationActive = false;
 		} else if (type === 'section') {
 			// Handle section navigation (scroll to section)
 			if (currentPathname !== '/') {
@@ -48,22 +59,57 @@
 				// Already on home page, just scroll
 				const target = document.querySelector(href);
 				if (target) {
-					target.scrollIntoView({ behavior: 'smooth' });
-					activeSection = href.slice(1); // Set active section
+					// Set active section immediately and temporarily disable scroll detection
+					activeSection = href.slice(1);
+					manualNavigationActive = true;
+					
+					// Scroll to target with proper offset for fixed navigation
+					const yOffset = -80; // Adjust this value based on your nav height
+					const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+					window.scrollTo({ top: y, behavior: 'smooth' });
+					
+					// Force update active section after a short delay to ensure scroll completes
+					setTimeout(() => {
+						activeSection = href.slice(1);
+					}, 300);
+					
+					// Reset manual navigation flag after scroll completes
+					navigationTimeout = setTimeout(() => {
+						manualNavigationActive = false;
+						// Force update active section after timeout to ensure proper state
+						updateActiveSection();
+					}, 1500);
 				}
 			}
 		}
 	}
 
 	function updateActiveSection() {
-		if (currentPathname !== '/') return;
+		if (currentPathname !== '/' || manualNavigationActive) return;
 		
 		const sections = ['projects', 'contact'];
 		const scrollPosition = window.scrollY + 100; // Offset for fixed nav
 		
 		// Reset activeSection if we're at the top (Hero section)
-		if (scrollPosition < 100) {
+		if (window.scrollY < 100) {
 			activeSection = '';
+			return;
+		}
+		
+		// Check if we're at the bottom of the page (Contact section)
+		const documentHeight = Math.max(
+			document.body.scrollHeight,
+			document.documentElement.scrollHeight,
+			document.body.offsetHeight,
+			document.documentElement.offsetHeight,
+			document.body.clientHeight,
+			document.documentElement.clientHeight
+		);
+		const windowBottom = window.innerHeight + window.scrollY;
+		
+		// If we're near the bottom of the page, activate contact section
+		if (windowBottom >= documentHeight - 100) {
+			activeSection = 'contact';
 			return;
 		}
 		
@@ -84,14 +130,24 @@
 	function isActiveLink(href: string, type: string): boolean {
 		if (type === 'page') {
 			if (href === '/') {
-				// Home is active when on home page and no section is active
-				return currentPathname === '/' && activeSection === '';
+				// Home is active when on home page and no section is active OR when at top
+				return currentPathname === '/' && (activeSection === '' || window.scrollY < 50);
 			}
 			return currentPathname === href;
 		} else if (type === 'section') {
 			return activeSection === href.slice(1);
 		}
 		return false;
+	}
+	
+	// Reset active section when clicking on Home or About
+	function resetActiveSection() {
+		activeSection = '';
+		manualNavigationActive = false;
+		if (navigationTimeout) {
+			clearTimeout(navigationTimeout);
+			navigationTimeout = null;
+		}
 	}
 
 	$effect(() => {
@@ -144,7 +200,13 @@
 					{#each navItems as item}
 						<a
 							href={item.href}
-							onclick={(e) => { e.preventDefault(); handleNavigation(item.href, item.type); }}
+							onclick={(e) => {
+								e.preventDefault();
+								if (item.type === 'page') {
+									resetActiveSection();
+								}
+								handleNavigation(item.href, item.type);
+							}}
 							class={`px-3 py-2 text-sm transition-colors duration-200 ${
 								isActiveLink(item.href, item.type)
 									? 'text-primary-400'
@@ -187,7 +249,13 @@
 				{#each navItems as item}
 					<a
 						href={item.href}
-						onclick={(e) => { e.preventDefault(); handleNavigation(item.href, item.type); }}
+						onclick={(e) => {
+							e.preventDefault();
+							if (item.type === 'page') {
+								resetActiveSection();
+							}
+							handleNavigation(item.href, item.type);
+						}}
 						class={`block px-3 py-2 rounded-md text-base transition-colors duration-200 ${
 							isActiveLink(item.href, item.type)
 							? 'text-primary-400 bg-primary-900/30'
