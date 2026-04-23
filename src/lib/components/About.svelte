@@ -66,45 +66,50 @@
 		<div class="pt-10">
 		    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">About Me</h2>
 		    <p class="text-gray-400">
-			I’m a data visualization designer with 9+ years of experience turning complex datasets into clear, impactful visual stories. My work sits at the intersection of design, data, and storytelling—crafting visuals that don’t just inform but also engage and drive action. Across my career at organizations like UNHCR and International Organization for Migration, I’ve used visualization as a strategic communication tool to clarify complexity, mobilize resources, and amplify critical issues to decision-makers and the public.
+			I design data products and visualizations that turn complex datasets into clear, actionable insights.
+            With 9+ years of experience, including work with the United Nations High Commissioner for Refugees and the International Organization for Migration, I specialize in dashboards, data visualization, and UI/UX for data-heavy applications.
+            I’ve designed data platforms, dashboards, and analytical products used by global teams, working end-to-end from user research and prototyping to final implementation.
+            My focus is on creating intuitive, user-centered tools that help people understand data and make better decisions.
 		    </p>
 		</div>
 		<!-- Content Section -->
 		<div class="pt-10">
-			<h3 class="text-2xl font-semibold text-gray-300 mb-6">My Humanitarian & Data Visualization Journey</h3>
+			<h3 class="text-2xl font-semibold text-gray-300 mb-6">Experience & Focus</h3>
 			
 			<div class="space-y-4 text-gray-400">
 				<p>
-					I began my career designing maps, infographics, dashboards and reports to support field operations and emergency response. Over time, I moved from individual visual products to shaping visualization strategies at a global scale.
+					My work spans both product design and data visualization:
 				</p>
-				
-				<p>
-					I led the development of UNHCR’s Data Visualization Platform, built interactive data stories to spotlight urgent crises, and designed flagship report visuals that helped frame key policy discussions. My work has reached diverse audiences — from field officers to policymakers and journalists — always with a focus on clarity, precision, and impact. For me, good visualization is good communication: it bridges the gap between raw data and human understanding, balancing analytical rigor with accessible, elegant design.
-				</p>
+				<ul class="list-disc list-inside space-y-2 pl-5">
+					<li>Designing dashboards and data-driven interfaces (Power BI, web-based tools)</li>
+                    <li>Structuring and visualizing complex datasets for decision-making</li>
+                    <li>Creating reports, infographics, and communication assets</li>
+                    <li>Developing design systems, templates, and visualization standards</li>
+                    <li>Collaborating with analysts, developers, and stakeholders across teams</li>
+				</ul>
 			</div>
 		</div>
 		<!-- My Approach Section -->
 		<div class="pt-10">
-			<h3 class="text-2xl font-semibold text-gray-300 mb-6">My Approach</h3>
+			<h3 class="text-2xl font-semibold text-gray-300 mb-6">Approach</h3>
 			<div class="space-y-4 text-gray-400">
 				<p>
-					My design practice is grounded in three core pillars:
+					My approach combines analytical thinking with user-centered design:
 				</p>
 				<ul class="list-disc list-inside space-y-2 pl-5">
-					<li><strong>Design Thinking for Data</strong> — I start by understanding the audience, their goals, and the decisions they need to make. This drives choices in visual form, hierarchy, and interaction.</li>
-					<li><strong>Humanitarian Insight</strong> — Years of working with analysts and field teams taught me to design for real-world data: messy, incomplete, and time-sensitive — without losing sight of the human stories behind it.</li>
-					<li><strong>Technical Craft</strong> — From early sketches to high-fidelity prototypes and production builds, I work hands-on with tools like Figma, Illustrator, InDesign, and D3.js to ensure that design intent is preserved through every stage of implementation.</li>
+					<li><strong>User-driven design</strong> — Understanding user needs, workflows, and decisions to shape clear and effective interfaces.</li>
+					<li><strong>Clarity over complexity</strong> — Simplifying messy, real-world data into intuitive visual structures without losing meaning.</li>
+					<li><strong>End-to-end execution</strong> — From research and concept to high-fidelity design and implementation, ensuring consistency across the entire product lifecycle.</li>
 				</ul>
 			</div>
 		</div>
 		<!-- Experience Accordion Section -->
-		<div class="pt-10">
+		<!-- <div class="pt-10">
 			<h3 class="text-2xl font-semibold text-gray-300 mb-6">Professional Experience</h3>
 			
 			<div class="space-y-0">
 				{#each experience as item}
 					<div class="bg-gray-800 border-b border-gray-700 last:border-b-0">
-						<!-- Accordion Header -->
 						<button
 							class="w-full p-4 text-left flex items-center justify-between hover:bg-gray-700 transition-colors duration-200"
 							onclick={() => toggleAccordion(item.id)}
@@ -122,7 +127,6 @@
 								</div>
 							</div>
 						</button>
-						<!-- Accordion Content -->
 						{#if item.isOpen}
 							<div class="p-4 pt-0" transition:slide={{ duration: 400, easing: cubicOut }}>
 								<p class="text-gray-400 text-sm mb-3">{item.description}</p>
@@ -138,7 +142,7 @@
 					</div>
 				{/each}
 			</div>
-		</div>
+		</div> -->
 		<!-- CV Download Link -->
 		<div class="pt-10">
 			<a

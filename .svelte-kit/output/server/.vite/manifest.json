@@ -173,8 +173,7 @@
     "src": "src/routes/about/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_Navigation.js",
-      "_index2.js"
+      "_Navigation.js"
     ],
     "css": [
       "_app/immutable/assets/_page.DBKXq26K.css"
