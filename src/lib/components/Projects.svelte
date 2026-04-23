@@ -293,7 +293,7 @@
 		<div class="mb-8">
 			<h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">Featured Projects</h2>
 			<p class="text-gray-400">
-				Explore my portfolio of data visualization projects that demonstrate technical expertise and creative problem-solving
+				Data products and visualizations designed to support analysis, decision-making, and communication.
 			</p>
 		</div>
 

@@ -33,7 +33,7 @@
 
 			<!-- Main Content -->
 			 <p class="text-xl text-primary-400 max-w-2xl leading-relaxed font-light">
-				Hi, my name is
+				Hi, I'm
 			 </p>
 			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
 				<span class="text-white">
@@ -41,14 +41,13 @@
 				</span>
 			</h1>
 			
-			<h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 mb-8 min-h-[2.5rem] tracking-wide">
+			<!-- <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 mb-8 min-h-[2.5rem] tracking-wide">
 				{animatedText}
 				<span class="animate-pulse text-primary-400">|</span>
-			</h2>
+			</h2> -->
 
 			<p class="text-xl text-gray-400 mb-12 max-w-2xl leading-relaxed font-light">
-			    I enjoy transforming complex data into compelling visual stories through 
-				interactive dashboards, beautiful charts, and insightful analytics.
+			    I design and build data visualizations and dashboards that transform complex data into clear, intuitive insights for decision-making.
 			</p>
 
 			<!-- CTA Buttons with modern styling -->
