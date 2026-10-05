@@ -66,9 +66,9 @@
 		<div class="pt-10">
 		    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8">About Me</h2>
 		    <p class="text-gray-400">
-			I design data products and visualizations that turn complex datasets into clear, actionable insights.
-            With 9+ years of experience, including work with the United Nations High Commissioner for Refugees and the International Organization for Migration, I specialize in dashboards, data visualization, and UI/UX for data-heavy applications.
-            I’ve designed data platforms, dashboards, and analytical products used by global teams, working end-to-end from user research and prototyping to final implementation.
+			I'm a data analyst and data visualization specialist who turns complex, multi-source datasets into clear, actionable insights.
+            With 9+ years of experience, including work with the United Nations High Commissioner for Refugees and the International Organization for Migration, I combine rigorous data analysis with clear visual communication — cleaning, validating, and exploring data with Python (Pandas, Matplotlib) and SQL, then turning it into visual stories that help teams understand the data and make decisions.
+            I’ve designed dashboards, data platforms, and analytical products in Power BI and on the web, used by global teams — working end-to-end from needs gathering and prototyping to final implementation.
             My focus is on creating intuitive, user-centered tools that help people understand data and make better decisions.
 		    </p>
 		</div>
@@ -78,12 +78,13 @@
 			
 			<div class="space-y-4 text-gray-400">
 				<p>
-					My work spans both product design and data visualization:
+					My work spans both data analysis and data visualization:
 				</p>
 				<ul class="list-disc list-inside space-y-2 pl-5">
-					<li>Designing dashboards and data-driven interfaces (Power BI, web-based tools)</li>
-                    <li>Structuring and visualizing complex datasets for decision-making</li>
-                    <li>Creating reports, infographics, and communication assets</li>
+					<li>Cleaning, validating, and analyzing multi-source datasets with Python (Pandas) and SQL to surface trends and insights</li>
+					<li>Designing interactive dashboards and data-driven interfaces (Power BI, web-based tools)</li>
+                    <li>Structuring and visualizing complex datasets for decision-making and KPI monitoring</li>
+                    <li>Creating reports, maps, infographics, and communication assets</li>
                     <li>Developing design systems, templates, and visualization standards</li>
                     <li>Collaborating with analysts, developers, and stakeholders across teams</li>
 				</ul>
@@ -144,7 +145,7 @@
 			</div>
 		</div> -->
 		<!-- CV Download Link -->
-		<div class="pt-10">
+		<!-- <div class="pt-10">
 			<a
 				href="download/cv_LeiChen.pdf"
 				target="_blank"
@@ -155,7 +156,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
 				</svg>
 			</a>
-		</div>
+		</div> -->
 	</div>
 </section>
 

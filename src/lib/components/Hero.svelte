@@ -3,7 +3,7 @@
 	import ThreeBackground from './ThreeBackground.svelte';
 
 	let animatedText = $state('');
-	const fullText = 'I design and build Data Visualization';
+	const fullText = 'I analyze data and build Data Visualizations';
 	let textIndex = 0;
 	let showContent = $state(false);
 
@@ -47,7 +47,7 @@
 			</h2> -->
 
 			<p class="text-xl text-gray-400 mb-12 max-w-2xl leading-relaxed font-light">
-			    I design and build data visualizations and dashboards that transform complex data into clear, intuitive insights for decision-making.
+			    I'm a data analyst and data visualization specialist. I clean, analyze, and visualize complex, multi-source datasets — turning them into clear, intuitive dashboards and data stories that support decision-making.
 			</p>
 
 			<!-- CTA Buttons with modern styling -->
